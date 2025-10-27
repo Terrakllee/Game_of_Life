@@ -1,4 +1,4 @@
-# Game_of_Life
+# Conway's Game of Life — by Terrakllee  
 Game in Windows CMD interface, Conway's Game of Life  
 Version: 1.0
 
