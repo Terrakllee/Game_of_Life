@@ -30,12 +30,23 @@
 #endif
 
 #include "GameOfLife.h"
+#include "patterns.h"
 
 using namespace std;
 
 static const string VERSION = "1.0";
 
 //Getters
+
+int GameOfLife::GCMX()
+{
+    return cMX;
+}
+
+int GameOfLife::GCMY()
+{
+    return cMY;
+}
 
 int GameOfLife::GetActualGridSizeRows()
 {
@@ -713,7 +724,7 @@ void GameOfLife::CreatePatternByID(int patternID)
     switch (patternID)
     {
     case 1:
-        CreateBlinker();
+        // patterns::CreateBlinker(*this);
         break;
     // case 2:
     //     CreateToad();
@@ -981,12 +992,12 @@ void GameOfLife::SummonConstructionMenu() // Menu of summoning different life ce
 
 ////////////////////////////////////////////////////////// CREATE OSCILLATORS
 
-void GameOfLife::CreateBlinker() //Blinker 3x3
-{
-    InitCell(2+cMX, 1+cMY, 1);
-    InitCell(2+cMX, 2+cMY, 1);
-    InitCell(2+cMX, 3+cMY, 1);
-}
+// void GameOfLife::CreateBlinker() //Blinker 3x3
+// {
+//     InitCell(2+cMX, 1+cMY, 1);
+//     InitCell(2+cMX, 2+cMY, 1);
+//     InitCell(2+cMX, 3+cMY, 1);
+// }
 
 /*
 
@@ -2017,6 +2028,8 @@ int main()
 
     ios::sync_with_stdio(false); //Grok AI made for faster console frame
     cout.setf(ios::unitbuf); //Grok AI
+
+    patterns::Test();
     
     GameOfLife gameOfLife;
     gameOfLife.Play();

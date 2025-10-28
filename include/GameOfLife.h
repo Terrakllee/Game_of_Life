@@ -4,6 +4,8 @@
 class GameOfLife
 {
 public:
+    int GCMX();
+    int GCMY();
     int GetActualGridSizeRows();
     int GetActualGridSizeCols();
     class Cell
@@ -112,7 +114,7 @@ public:
 
     void SummonConstructionMenu(); // Menu of summoning different life cell ships like patterns
 
-    void CreateBlinker(); //Blinker 3x3
+    // void CreateBlinker(); //Blinker 3x3
 
     void ChooseBackground(); // Menu to change BG of grid
     void SetGameSpeed(); // Sets game speed int milliseconds
