@@ -724,44 +724,44 @@ void GameOfLife::CreatePatternByID(int patternID)
     switch (patternID)
     {
     case 1:
-        // patterns::CreateBlinker(*this);
+        patterns::CreateBlinker(*this);
         break;
-    // case 2:
-    //     CreateToad();
-    //     break;
-    // case 3:
-    //     CreateBeacon();
-    //     break;
-    // case 4:
-    //     CreatePulsar();
-    //     break;
-    // case 5:
-    //     CreatePentadecathlon();
-    //     break;
-    // case 6:
-    //     CreateGlider();
-    //     break;
-    // case 7:
-    //     CreateTheRPentomino();
-    //     break;
-    // case 8:
-    //     CreateDiehard();
-    //     break;
-    // case 9:
-    //     CreateAcorn();
-    //     break;
-    // case 10:
-    //     CreateDiagonalNuke();
-    //     break;
-    // case 11:
-    //     CreateCompactNuke();
-    //     break;
-    // case 12:
-    //     CreateNukeLine();
-    //     break;
-    // case 13:
-    //     CreateAmogus();
-    //     break;
+    case 2:
+        patterns::CreateToad(*this);
+        break;
+    case 3:
+        patterns::CreateBeacon(*this);
+        break;
+    case 4:
+        patterns::CreatePulsar(*this);
+        break;
+    case 5:
+        patterns::CreatePentadecathlon(*this);
+        break;
+    case 6:
+        patterns::CreateGlider(*this);
+        break;
+    case 7:
+        patterns::CreateTheRPentomino(*this);
+        break;
+    case 8:
+        patterns::CreateDiehard(*this);
+        break;
+    case 9:
+        patterns::CreateAcorn(*this);
+        break;
+    case 10:
+        patterns::CreateDiagonalNuke(*this);
+        break;
+    case 11:
+        patterns::CreateCompactNuke(*this);
+        break;
+    case 12:
+        patterns::CreateNukeLine(*this);
+        break;
+    case 13:
+        patterns::CreateAmogus(*this);
+        break;
     default:
         cout << "\nОбъекта с таким ID не существует!\n";
         break;
@@ -894,90 +894,90 @@ void GameOfLife::SummonConstructionMenu() // Menu of summoning different life ce
             }
             exitConstructionMenu = true;
             break;
-        // case 't':
-        //     {
-        //         Pattern toad(5, 5, "Toad", 2);
-        //         SummonPattern(toad);
-        //     }
-        //     exitConstructionMenu = true;
-        //     break;
-        // case 'o':
-        //     {
-        //         Pattern beacon(4, 4, "Beacon", 3);
-        //         SummonPattern(beacon);
-        //     }
-        //     exitConstructionMenu = true;
-        //     break;
-        // case 'p':
-        //     {
-        //         Pattern pulsar(17, 17, "Pulsar", 4);
-        //         SummonPattern(pulsar);
-        //     }
-        //     exitConstructionMenu = true;
-        //     break;
-        // case 'e':
-        //     {
-        //         Pattern pentadecathlon(11, 18, "Pentadecathlon", 5);
-        //         SummonPattern(pentadecathlon);
-        //     }
-        //     exitConstructionMenu = true;
-        //     break;
-        // case 'g':
-        //     {
-        //         Pattern glider(5, 5, "Glider", 6);
-        //         SummonPattern(glider);
-        //     }
-        //     exitConstructionMenu = true;
-        //     break;
-        // case 'r':
-        //     {
-        //         Pattern theRPentomino(5, 5, "The R-Pentomino", 7);
-        //         SummonPattern(theRPentomino);
-        //     }
-        //     exitConstructionMenu = true;
-        //     break;
-        // case 'd':
-        //     {
-        //         Pattern diehard(10, 5, "Diehard", 8);
-        //         SummonPattern(diehard);
-        //     }
-        //     exitConstructionMenu = true;
-        //     break;
-        // case 'a':
-        //     {
-        //         Pattern acorn(9, 5, "Acorn", 9);
-        //         SummonPattern(acorn);
-        //     }
-        //     exitConstructionMenu = true;
-        //     break;
-        // case 'l':
-        //     {
-        //         Pattern diagonalNuke(10, 8, "Diagonal Nuke", 10);
-        //         SummonPattern(diagonalNuke);
-        //     }
-        //     exitConstructionMenu = true;
-        //     break;
-        // case 'c':
-        //     {
-        //         Pattern compactNuke(5, 5, "Compact Nuke", 11);
-        //         SummonPattern(compactNuke);
-        //     }
-        //     exitConstructionMenu = true;
-        //     break;
-        // case 'n':
-        //     {
-        //         Pattern nukeLine(41, 3, "Nuke Line", 12);
-        //         SummonPattern(nukeLine);
-        //     }
-        //     exitConstructionMenu = true;
-        //     break;
-        // case 's':
-        //     {
-        //         Pattern amogus(6, 7, "Amogus", 13);
-        //         SummonPattern(amogus);
-        //     }
-        //     exitConstructionMenu = true;
-        //     break;
+        case 't':
+            {
+                Pattern toad(5, 5, "Toad", 2);
+                SummonPattern(toad);
+            }
+            exitConstructionMenu = true;
+            break;
+        case 'o':
+            {
+                Pattern beacon(4, 4, "Beacon", 3);
+                SummonPattern(beacon);
+            }
+            exitConstructionMenu = true;
+            break;
+        case 'p':
+            {
+                Pattern pulsar(17, 17, "Pulsar", 4);
+                SummonPattern(pulsar);
+            }
+            exitConstructionMenu = true;
+            break;
+        case 'e':
+            {
+                Pattern pentadecathlon(11, 18, "Pentadecathlon", 5);
+                SummonPattern(pentadecathlon);
+            }
+            exitConstructionMenu = true;
+            break;
+        case 'g':
+            {
+                Pattern glider(5, 5, "Glider", 6);
+                SummonPattern(glider);
+            }
+            exitConstructionMenu = true;
+            break;
+        case 'r':
+            {
+                Pattern theRPentomino(5, 5, "The R-Pentomino", 7);
+                SummonPattern(theRPentomino);
+            }
+            exitConstructionMenu = true;
+            break;
+        case 'd':
+            {
+                Pattern diehard(10, 5, "Diehard", 8);
+                SummonPattern(diehard);
+            }
+            exitConstructionMenu = true;
+            break;
+        case 'a':
+            {
+                Pattern acorn(9, 5, "Acorn", 9);
+                SummonPattern(acorn);
+            }
+            exitConstructionMenu = true;
+            break;
+        case 'l':
+            {
+                Pattern diagonalNuke(10, 8, "Diagonal Nuke", 10);
+                SummonPattern(diagonalNuke);
+            }
+            exitConstructionMenu = true;
+            break;
+        case 'c':
+            {
+                Pattern compactNuke(5, 5, "Compact Nuke", 11);
+                SummonPattern(compactNuke);
+            }
+            exitConstructionMenu = true;
+            break;
+        case 'n':
+            {
+                Pattern nukeLine(41, 3, "Nuke Line", 12);
+                SummonPattern(nukeLine);
+            }
+            exitConstructionMenu = true;
+            break;
+        case 's':
+            {
+                Pattern amogus(6, 7, "Amogus", 13);
+                SummonPattern(amogus);
+            }
+            exitConstructionMenu = true;
+            break;
         case 'q':
             exitConstructionMenu = true;
             break;
@@ -989,253 +989,6 @@ void GameOfLife::SummonConstructionMenu() // Menu of summoning different life ce
         }
     } while (!exitConstructionMenu);
 }
-
-////////////////////////////////////////////////////////// CREATE OSCILLATORS
-
-// void GameOfLife::CreateBlinker() //Blinker 3x3
-// {
-//     InitCell(2+cMX, 1+cMY, 1);
-//     InitCell(2+cMX, 2+cMY, 1);
-//     InitCell(2+cMX, 3+cMY, 1);
-// }
-
-/*
-
-void CreateToad() //Toad 4x4
-{
-    InitCell(3+cMX, 1+cMY, 1);
-    InitCell(1+cMX, 2+cMY, 1);
-    InitCell(4+cMX, 2+cMY, 1);
-    InitCell(1+cMX, 3+cMY, 1);
-    InitCell(4+cMX, 3+cMY, 1);
-    InitCell(2+cMX, 4+cMY, 1);
-}
-
-void CreateBeacon() //Beacon 4x4
-{
-    InitCell(1+cMX, 1+cMY, 1);
-    InitCell(2+cMX, 1+cMY, 1);
-    InitCell(1+cMX, 2+cMY, 1);
-    InitCell(4+cMX, 3+cMY, 1);
-    InitCell(3+cMX, 4+cMY, 1);
-    InitCell(4+cMX, 4+cMY, 1);
-}
-
-void CreatePulsar() //Pulsar 17x17
-{
-    InitCell(5+cMX, 3+cMY, 1);
-    InitCell(6+cMX, 3+cMY, 1);
-    InitCell(7+cMX, 3+cMY, 1);
-    InitCell(11+cMX, 3+cMY, 1);
-    InitCell(12+cMX, 3+cMY, 1);
-    InitCell(13+cMX, 3+cMY, 1);
-    InitCell(3+cMX, 5+cMY, 1);
-    InitCell(8+cMX, 5+cMY, 1);
-    InitCell(10+cMX, 5+cMY, 1);
-    InitCell(15+cMX, 5+cMY, 1);
-    InitCell(3+cMX, 6+cMY, 1);
-    InitCell(8+cMX, 6+cMY, 1);
-    InitCell(10+cMX, 6+cMY, 1);
-    InitCell(15+cMX, 6+cMY, 1);
-    InitCell(3+cMX, 7+cMY, 1);
-    InitCell(8+cMX, 7+cMY, 1);
-    InitCell(10+cMX, 7+cMY, 1);
-    InitCell(15+cMX, 7+cMY, 1);
-    InitCell(5+cMX, 8+cMY, 1);
-    InitCell(6+cMX, 8+cMY, 1);
-    InitCell(7+cMX, 8+cMY, 1);
-    InitCell(11+cMX, 8+cMY, 1);
-    InitCell(12+cMX, 8+cMY, 1);
-    InitCell(13+cMX, 8+cMY, 1);
-    InitCell(5+cMX, 10+cMY, 1);
-    InitCell(6+cMX, 10+cMY, 1);
-    InitCell(7+cMX, 10+cMY, 1);
-    InitCell(11+cMX, 10+cMY, 1);
-    InitCell(12+cMX, 10+cMY, 1);
-    InitCell(13+cMX, 10+cMY, 1);
-    InitCell(3+cMX, 11+cMY, 1);
-    InitCell(8+cMX, 11+cMY, 1);
-    InitCell(10+cMX, 11+cMY, 1);
-    InitCell(15+cMX, 11+cMY, 1);
-    InitCell(3+cMX, 12+cMY, 1);
-    InitCell(8+cMX, 12+cMY, 1);
-    InitCell(10+cMX, 12+cMY, 1);
-    InitCell(15+cMX, 12+cMY, 1);
-    InitCell(3+cMX, 13+cMY, 1);
-    InitCell(8+cMX, 13+cMY, 1);
-    InitCell(10+cMX, 13+cMY, 1);
-    InitCell(15+cMX, 13+cMY, 1);
-    InitCell(5+cMX, 15+cMY, 1);
-    InitCell(6+cMX, 15+cMY, 1);
-    InitCell(7+cMX, 15+cMY, 1);
-    InitCell(11+cMX, 15+cMY, 1);
-    InitCell(12+cMX, 15+cMY, 1);
-    InitCell(13+cMX, 15+cMY, 1);
-}
-
-void CreatePentadecathlon() //Pentadecathlon 11x18
-{
-    InitCell(5+cMX, 6+cMY, 1);
-    InitCell(6+cMX, 6+cMY, 1);
-    InitCell(7+cMX, 6+cMY, 1);
-    InitCell(5+cMX, 7+cMY, 1);
-    InitCell(7+cMX, 7+cMY, 1);
-    InitCell(5+cMX, 8+cMY, 1);
-    InitCell(6+cMX, 8+cMY, 1);
-    InitCell(7+cMX, 8+cMY, 1);
-    InitCell(5+cMX, 9+cMY, 1);
-    InitCell(6+cMX, 9+cMY, 1);
-    InitCell(7+cMX, 9+cMY, 1);
-    InitCell(5+cMX, 10+cMY, 1);
-    InitCell(6+cMX, 10+cMY, 1);
-    InitCell(7+cMX, 10+cMY, 1);
-    InitCell(5+cMX, 11+cMY, 1);
-    InitCell(6+cMX, 11+cMY, 1);
-    InitCell(7+cMX, 11+cMY, 1);
-    InitCell(5+cMX, 12+cMY, 1);
-    InitCell(7+cMX, 12+cMY, 1);
-    InitCell(5+cMX, 13+cMY, 1);
-    InitCell(6+cMX, 13+cMY, 1);
-    InitCell(7+cMX, 13+cMY, 1);
-}
-
-////////////////////////////////////////////////////////////// CREATE SPACESHIPS
-
-void CreateGlider() //Glider 5x5
-{
-    InitCell(4+cMX, 2+cMY, 1);
-    InitCell(3+cMX, 3+cMY, 1);
-    InitCell(2+cMX, 4+cMY, 1);
-    InitCell(3+cMX, 4+cMY, 1);
-    InitCell(4+cMX, 4+cMY, 1);
-}
-
-//////////////////////////////////////////////////// CREATE METHUSELAHS
-
-void CreateTheRPentomino() // The R-pentomino 5x5
-{
-    InitCell(3+cMX, 2+cMY, 1);
-    InitCell(2+cMX, 3+cMY, 1);
-    InitCell(3+cMX, 3+cMY, 1);
-    InitCell(4+cMX, 3+cMY, 1);
-    InitCell(4+cMX, 4+cMY, 1);
-}
-
-void CreateDiehard() // Diehard 10x5
-{
-    InitCell(8+cMX, 2+cMY, 1);
-    InitCell(2+cMX, 3+cMY, 1);
-    InitCell(3+cMX, 3+cMY, 1);
-    InitCell(3+cMX, 4+cMY, 1);
-    InitCell(7+cMX, 4+cMY, 1);
-    InitCell(8+cMX, 4+cMY, 1);
-    InitCell(9+cMX, 4+cMY, 1);
-}
-
-void CreateAcorn() // Acorn 9x5
-{
-    InitCell(3+cMX, 2+cMY, 1);
-    InitCell(5+cMX, 3+cMY, 1);
-    InitCell(2+cMX, 4+cMY, 1);
-    InitCell(3+cMX, 4+cMY, 1);
-    InitCell(6+cMX, 4+cMY, 1);
-    InitCell(7+cMX, 4+cMY, 1);
-    InitCell(8+cMX, 4+cMY, 1);
-}
-
-//////////////////////////////// CREATE NUKES
-
-void CreateDiagonalNuke() //Diagonal Nuke 10x8
-{
-    InitCell(8+cMX, 2+cMY, 1);
-    InitCell(6+cMX, 3+cMY, 1);
-    InitCell(8+cMX, 3+cMY, 1);
-    InitCell(9+cMX, 3+cMY, 1);
-    InitCell(6+cMX, 4+cMY, 1);
-    InitCell(8+cMX, 4+cMY, 1);
-    InitCell(6+cMX, 5+cMY, 1);
-    InitCell(4+cMX, 6+cMY, 1);
-    InitCell(2+cMX, 7+cMY, 1);
-    InitCell(4+cMX, 7+cMY, 1);
-}
-
-void CreateCompactNuke() //Compact Nuke 5x5
-{
-    InitCell(1+cMX, 1+cMY, 1);
-    InitCell(2+cMX, 1+cMY, 1);
-    InitCell(3+cMX, 1+cMY, 1);
-    InitCell(5+cMX, 1+cMY, 1);
-    InitCell(1+cMX, 2+cMY, 1);
-    InitCell(4+cMX, 3+cMY, 1);
-    InitCell(5+cMX, 3+cMY, 1);
-    InitCell(2+cMX, 4+cMY, 1);
-    InitCell(3+cMX, 4+cMY, 1);
-    InitCell(5+cMX, 4+cMY, 1);
-    InitCell(1+cMX, 5+cMY, 1);
-    InitCell(3+cMX, 5+cMY, 1);
-    InitCell(5+cMX, 5+cMY, 1);
-}
-
-void CreateNukeLine() //Nuke Line 41x3
-{
-    InitCell(2+cMX, 2+cMY, 1);
-    InitCell(3+cMX, 2+cMY, 1);
-    InitCell(4+cMX, 2+cMY, 1);
-    InitCell(5+cMX, 2+cMY, 1);
-    InitCell(6+cMX, 2+cMY, 1);
-    InitCell(7+cMX, 2+cMY, 1);
-    InitCell(8+cMX, 2+cMY, 1);
-    InitCell(9+cMX, 2+cMY, 1);
-    InitCell(11+cMX, 2+cMY, 1);
-    InitCell(12+cMX, 2+cMY, 1);
-    InitCell(13+cMX, 2+cMY, 1);
-    InitCell(14+cMX, 2+cMY, 1);
-    InitCell(15+cMX, 2+cMY, 1);
-    InitCell(19+cMX, 2+cMY, 1);
-    InitCell(20+cMX, 2+cMY, 1);
-    InitCell(21+cMX, 2+cMY, 1);
-    InitCell(28+cMX, 2+cMY, 1);
-    InitCell(29+cMX, 2+cMY, 1);
-    InitCell(30+cMX, 2+cMY, 1);
-    InitCell(31+cMX, 2+cMY, 1);
-    InitCell(32+cMX, 2+cMY, 1);
-    InitCell(33+cMX, 2+cMY, 1);
-    InitCell(34+cMX, 2+cMY, 1);
-    InitCell(36+cMX, 2+cMY, 1);
-    InitCell(37+cMX, 2+cMY, 1);
-    InitCell(38+cMX, 2+cMY, 1);
-    InitCell(39+cMX, 2+cMY, 1);
-    InitCell(40+cMX, 2+cMY, 1);
-}
-
-/////////////////Custom user made patterns
-
-void CreateAmogus() //Amogus 6x7
-{
-    InitCell(2+cMX, 2+cMY, 0);
-    InitCell(3+cMX, 2+cMY, 1);
-    InitCell(3+cMX, 2+cMY, 1);
-    InitCell(4+cMX, 2+cMY, 1);
-    InitCell(5+cMX, 2+cMY, 1);
-    InitCell(2+cMX, 3+cMY, 1);
-    InitCell(3+cMX, 3+cMY, 1);
-    InitCell(4+cMX, 3+cMY, 0);
-    InitCell(5+cMX, 3+cMY, 0);
-    InitCell(2+cMX, 4+cMY, 1);
-    InitCell(3+cMX, 4+cMY, 1);
-    InitCell(4+cMX, 4+cMY, 1);
-    InitCell(5+cMX, 4+cMY, 1);
-    InitCell(2+cMX, 5+cMY, 1);
-    InitCell(3+cMX, 5+cMY, 1);
-    InitCell(4+cMX, 5+cMY, 1);
-    InitCell(5+cMX, 5+cMY, 1);
-    InitCell(2+cMX, 6+cMY, 0);
-    InitCell(3+cMX, 6+cMY, 1);
-    InitCell(4+cMX, 6+cMY, 0);
-    InitCell(5+cMX, 6+cMY, 1);
-}
-
-*/
 
 void GameOfLife::ChooseBackground() // Menu to change BG of grid
 {
@@ -2028,8 +1781,6 @@ int main()
 
     ios::sync_with_stdio(false); //Grok AI made for faster console frame
     cout.setf(ios::unitbuf); //Grok AI
-
-    patterns::Test();
     
     GameOfLife gameOfLife;
     gameOfLife.Play();
