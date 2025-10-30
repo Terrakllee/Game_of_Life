@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/Users/QuantumAge/Documents/Code_Stuff/VSCode/MyProjects/Game_of_Life/build/CMakeFiles/Game_of_Life.dir/embed.manifest"

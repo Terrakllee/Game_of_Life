@@ -29,43 +29,16 @@
 #include <windows.h>
 #endif
 
-#include "GameOfLife.h"
+#include "engine.h"
 #include "patterns.h"
+#include "UI.h"
+#include "settings.h"
 
 using namespace std;
 
 static const string VERSION = "1.0";
 
 //Getters
-
-int GameOfLife::GCMX()
-{
-    return cMX;
-}
-
-int GameOfLife::GCMY()
-{
-    return cMY;
-}
-
-int GameOfLife::GetActualGridSizeRows()
-{
-    return actualGridSizeRows;
-}
-int GameOfLife::GetActualGridSizeCols()
-{
-    return actualGridSizeCols;
-}
-
-bool GameOfLife::IsGridSizeXEven()
-{
-    return actualGridSizeCols % 2 == 0;
-}
-
-bool GameOfLife::IsGridSizeYEven()
-{
-    return actualGridSizeRows % 2 == 1;
-}
 
 bool GameOfLife::IsEdge(int &i, int &j)
 {
@@ -990,145 +963,6 @@ void GameOfLife::SummonConstructionMenu() // Menu of summoning different life ce
     } while (!exitConstructionMenu);
 }
 
-void GameOfLife::ChooseBackground() // Menu to change BG of grid
-{
-    cout << "\nВыберите символ для использования в роли фона, для этого введите цифру символа\n";
-    cout << " *1 - '.'\t";
-    cout << " *2 - ':'\t";
-    cout << " *3 - '|'\t";
-    cout << " *4 - '_'\t\n";
-    cout << " *5 - ' '\t";
-    cout << " *6 - '░'\t";
-    cout << " *7 - '█'\t";
-    cout << " *8 - '▓'\t\n";
-    cout << " *9 - '▒'\t";
-    cout << " *10 - '䷀'\t";
-    cout << " *11 - '𝌆'\t";
-    cout << " *12 - '⣿'\t\n";
-    cout << " *13 - '⠐'\t";
-    cout << " *14 - '∙'\t";
-    cout << " *15 - '▏'\t";
-    cout << " *16 - '╲'\t\n";
-    cout << " *17 - '╱'\t";
-    cout << " *18 - '─'\t\n\n";
-    cout << " *19 - Сетка \n\n";
-    cout << "Ввод: ";
-    do
-    {
-        cin >> bgCharChoose;
-    } while (bgCharChoose < 1 || bgCharChoose > 20);
-
-    switch (bgCharChoose)
-    {
-    case 1:
-        bgChar = '.';
-        break;
-    case 2:
-        bgChar = ':';
-        break;
-    case 3:
-        bgChar = '|';
-        break;
-    case 4:
-        bgChar = '_';
-        break;
-    case 5:
-        bgChar = ' ';
-        break;
-    
-    default:
-        break;
-    }
-
-    cout << "\nВыбран символ: '";
-    if (bgCharChoose < 6)
-    {
-        cout << bgChar << "'\n";
-    }
-
-    switch (bgCharChoose)
-    {
-    case 6:
-        cout << "░'\n";
-        gridView = false;
-        break;
-    case 7:
-        cout << "█'\n";
-        gridView = false;
-        break;
-    case 8:
-        cout << "▓'\n";
-        gridView = false;
-        break;
-    case 9:
-        cout << "▒'\n";
-        gridView = false;
-        break;
-    case 10:
-        cout << "䷀'\n";
-        gridView = false;
-        break;
-    case 11:
-        cout << "𝌆'\n";
-        gridView = false;
-        break;
-    case 12:
-        cout << "⣿'\n";
-        gridView = false;
-        break;
-    case 13:
-        cout << "⠐'\n";
-        gridView = false;
-        break;
-    case 14:
-        cout << "∙'\n";
-        gridView = false;
-        break;
-    case 15:
-        cout << "▏'\n";
-        gridView = false;
-        break;
-    case 16:
-        cout << "╲'\n";
-        gridView = false;
-        break;
-    case 17:
-        cout << "╱'\n";
-        gridView = false;
-        break;
-    case 18:
-        cout << "─'\n";
-        gridView = false;
-        break;
-    case 19:
-        cout << "Сетка'\n";
-        gridView = true;
-        break;
-    
-    default:
-        break;
-    }
-}
-
-void GameOfLife::SetGameSpeed() // Sets game speed int milliseconds
-{
-    cout << "\nСейчас скорость = " << tickTime;
-    cout << "\nВведите время каждого такта игры (В миллисекундах)\n";
-    cout << "Ввод: ";
-
-    do
-    {
-        cin >> tickTime;
-        if (tickTime < 1)
-        {
-            cout << "\nСлишком короткий интервал между тактами!\n";
-            cout << "Введите больше времени\n";
-        }
-        
-    } while (tickTime < 1);
-}
-
-
 int GameOfLife::CountAliveCellsOnGrid() // Counts and returns number of alive cells on the entire grid
 {
     int amountOfCellsAliveOnGrid = 0;
@@ -1344,25 +1178,13 @@ void GameOfLife::UserAddCell() // User places cell at a specific coordinates
     InitCell(x, y, true);
 }
 
-void GameOfLife::ChangeSeed()
-{
-    double seed;
-    cout << "\nВведите сид (Случайно число для генерации одного и того же паттерна, по тому же сиду)\n";
-    cout << "Ввод: ";
-    cin >> seed;
-    cout << "Ваш сид: " << seed;
-    userChangedSeed = true;
-    srand(seed);
-    
-}
-
 void GameOfLife::RandomizeManyCellsBySeed() // Spawns many random cells using specific user entered seed
 {
     int amountOfCellsToCreation;
 
     if (userChangedSeed == false)
     {
-        // srand(time(nullptr));
+        srand(time(nullptr));
     }
 
     cout << "\n@*@**@**@****@***@~~Генерация случайного паттерна~~@***@****@**@**@*@";
@@ -1400,25 +1222,25 @@ void GameOfLife::RandomizeManyCellsBySeed() // Spawns many random cells using sp
     cout << "\nБыло сгенерированно: " << cellsGenerated << " Клеток\n";
 }
 
-void GameOfLife::ChangeCage() //Changes cage design from coordinates to borders, or opposite
-{
-    short user = 0;
-    cout << "\n&&&&&& Выбор оконтовки &&&&&&\n";
-    cout << "Введите 1 если хотите увидеть оконтовку и убрать координаты, и 0 если наоборот\n";
-    cout << "Ввод: ";
-    cin >> user;
+// void GameOfLife::ChangeCage() //Changes cage design from coordinates to borders, or opposite
+// {
+//     short user = 0;
+//     cout << "\n&&&&&& Выбор оконтовки &&&&&&\n";
+//     cout << "Введите 1 если хотите увидеть оконтовку и убрать координаты, и 0 если наоборот\n";
+//     cout << "Ввод: ";
+//     cin >> user;
 
-    if (user == 1)
-    {
-        showCage = 1;
-        showCoords = 0;
-    }
-    else
-    {
-        showCage = 0;
-        showCoords = 1;
-    }
-}
+//     if (user == 1)
+//     {
+//         showCage = 1;
+//         showCoords = 0;
+//     }
+//     else
+//     {
+//         showCage = 0;
+//         showCoords = 1;
+//     }
+// }
 
 void GameOfLife::DebugMenu() // Debug menu for testing different parts of the game mechanics
 {
@@ -1483,228 +1305,6 @@ void GameOfLife::Launch()
     cout << "Вы можете продолжить симуляцию или что то изменить в ней через меню\n";
 }
 
-void GameOfLife::ChangeGridSize()
-{
-    int changeSizeX;
-    int changeSizeY;
-    bool userValidation;
-
-    cout << "\n--##--##--Редактирование размера поля--##--##--\n";
-    
-    do
-    {
-        cout << "Введите размер по шкале X\n";
-        cout << "Ввод: ";
-        cin >> changeSizeX;
-
-        if (changeSizeX < 1)
-        {
-            cout << "\nВы не можете создать поле на отрицательное количество ячеек!\n";
-        }
-        else if (changeSizeX > MAX_COLS)
-        {
-            cout << "\nВы не можете создать поле на больше чем " << MAX_COLS << " ячеек!\n";
-        }
-    } while (changeSizeX < 1 || changeSizeX > MAX_COLS);
-
-    do
-    {
-        cout << "Введите размер по шкале Y\n";
-        cout << "Ввод: ";
-        cin >> changeSizeY;
-
-        if (changeSizeY < 1)
-        {
-            cout << "\nВы не можете создать поле на отрицательное количество ячеек!\n";
-        }
-        else if (changeSizeY > MAX_ROWS)
-        {
-            cout << "\nВы не можете создать поле на больше чем " << MAX_ROWS << " ячеек!\n";
-        }
-    } while (changeSizeY < 1 || changeSizeY > MAX_ROWS);
-
-    cout << "\nВы действительно хотите изменить размер с " << actualGridSizeCols << "x" << actualGridSizeRows << " на " << changeSizeX << "x" << changeSizeY << " ?\n";
-    cout << "Ввод: ";
-    cin >> userValidation;
-
-    actualGridSizeCols = changeSizeX;
-    actualGridSizeRows = changeSizeY;
-
-    changeSizeX+=2;
-    changeSizeY+=2;
-    
-
-    if (userValidation == 1)
-    {
-        DeleteGrid();
-
-        cols = changeSizeX;
-        rows = changeSizeY;
-
-        InitGrid();
-    }
-}
-
-void GameOfLife::Info()
-{
-    cout << "\n?.?.?.?...Информация по игре...?.?.?.?.?\n";
-
-    cout << "Это игра где есть поле и клетки, у клеток есть только 2 состояния\n";
-    cout << "Либо живые, либо мертвые, а цель игрока просто наблюдать за сложными и красивыми паттернами развития клеток\n";
-
-    cout << "\nПо сути у клетки есть только 4 правила";
-    cout << "\n *1 Если у клетки больше 3 соседей, то она погибает от перенаселения";
-    cout << "\n *2 Если у клетки меньше 2 соседей, то она погибает из-за вымирания";
-    cout << "\n *3 Если у клетки 2 или 3 соседа, то она продолжает жить до следующей генерации";
-    cout << "\n *4 Любая мертвая клетка, у которой есть 3 соседа, оживает, из-за репродукции\n";
-
-    cout << "\nВопрос-Ответ";
-    cout << "\n - Что обозначают буквы на шкале координат?";
-    cout << "\n > Буквы на шкале координат означают десятки, тоесть, A = 10, и цифры после A будут складываться с A (т.е.10)";
-    cout << "\n > И например \"A 1 2 3 \" означает по сути \"10 11 12 13\"";
-    cout << "\n - Для чего это было сделано и почему нельзя было использовать обычные цифры?";
-    cout << "\n > Это было сделанно специально, потому что иначе, десятки занимали бы 2 символа, и все поле бы съезжало\n";
-
-    cout << "\nРекомендации по настройкам\n";
-    cout << "\nЛучше всего ставить время на 100-150 миллисекунд, и точно не следет ставить 2000 или 3000, так как это очень долго";
-    cout << "\nЕсли поставить больше половины клеток на карту, то тогда они все очень быстро вымрут и ничего крутого не выйдет";
-    cout << "\nТак что рекомундую ставить примерно половину или чуть меньше половины клеток на поле";
-    cout << "\nТак же рекомендую использовать другие виды фона, особенно когда нужно ставить клетки вручную";
-    cout << "\nНекоторые конструкции могут некорректно спавниться :(\n";
-}
-
-void GameOfLife::Settings()
-{
-    char userSettings;
-    bool exitSettings = false;
-
-    do
-    {
-        cout << "\n~~()~~()~~()~~~Настройки~~~()~~()~~()~~\n";
-        cout << "Введите 's' для изменения размера поля\n";
-        cout << "Введите 't' для изменения скорости игры\n";
-        cout << "Введите 'b' для изменения фона\n";
-        cout << "Введите 'c' для изменения оконтовки\n";
-        cout << "Введите 'r' для изменения сида\n";
-        cout << "Введите 'f' для включения/отключения историю кадров\n";
-        cout << "Введите 'q' для выхода из настроек\n";
-        cout << "Ввод: ";
-
-        cin >> userSettings;
-
-        switch (userSettings)
-        {
-        case 's':
-            ChangeGridSize();
-            PrintGrid();
-            break;
-        case 't':
-            SetGameSpeed();
-            break;
-        case 'b':
-            ChooseBackground();
-            PrintGrid();
-            break;
-        case 'c':
-            ChangeCage();
-            PrintGrid();
-            break;
-        case 'r':
-            ChangeSeed();
-            break;
-        case 'f':
-            if (frameHistory)
-            {
-                frameHistory = false;
-                cout << "История кадров отключена!\n";
-            }
-            else
-            {
-                frameHistory = true;
-                cout << "История кадров включена!\n";
-            }
-            break;
-        case 'q':
-            exitSettings = true;
-            break;
-        
-        default:
-            cout << "\nНет такого пункта настроек '" << userSettings << "'\n";
-            break;
-        }
-    } while (!exitSettings);
-}
-
-void GameOfLife::MainMenu()
-{
-    bool exit = false;
-    char menu;
-    do
-    {
-        cout << "\n##~~~~~~~~~~~###~~~~~~~~Меню~~~~~~~~###~~~~~~~~~~~~##\n";
-        cout << "Введите 'a' для добавления клетки\n";
-        cout << "Введите 'p' для запуска\n";
-        cout << "Введите 'c' для появления определенной конструкции\n";
-        cout << "Введите 'r' для появления случайного паттерна клеток\n";
-        cout << "Введите 'v' для отображения поля\n";
-        cout << "Введите 'k' для удаления клетки\n";
-        cout << "Введите 'd' для очистки поля\n";
-        cout << "Введите 's' для настроек\n";
-        cout << "Введите 'i' для большей информации по игре\n";
-        cout << "Введите 'q' для выхода\n";
-        cout << "Ввод: ";
-        cin >> menu;
-
-        switch (menu)
-        {
-        case 'a':
-            UserAddCell();
-            PrintGrid();
-            break;
-        case 'p':
-            Launch();
-            break;
-        case 'c':
-            SummonConstructionMenu();
-            PrintGrid();
-            break;
-        case 'r':
-            RandomizeManyCellsBySeed();
-            PrintGrid();
-            break;
-        case 'v':
-            PrintGrid();
-            break;
-        case 'k':
-            UserKillCell();
-            PrintGrid();
-            break;
-        case 'd':
-            ClearGrid();
-            PrintGrid();
-            break;
-        case '~':
-            DebugMenu();
-            break;
-        case 's':
-            Settings();
-            break;
-        case 'i':
-            Info();
-            break;
-        case 'q':
-            exit = true;
-            break;
-        
-        default:
-            cout << "\nНет такого пункта меню '" << menu << "'\n";
-            break;
-        }
-        
-    } while (!exit);
-
-}
-
 void GameOfLife::Greetings() // Greeting message
 {
     cout << "|====|====|Игра Жизнь|====|====|\n";
@@ -1716,7 +1316,7 @@ void GameOfLife::Play() // Main function to play a game
 {
     Greetings();
     PrintGrid();
-    MainMenu();
+    UI::MainMenu(*this);
 }
 
 void GameOfLife::InitGrid()
@@ -1762,28 +1362,28 @@ GameOfLife::~GameOfLife()
     Grid = nullptr;
 }
 
-int main()
-{
-    setlocale(LC_ALL, "ru_RU.UTF-8");
+// int main()
+// {
+//     setlocale(LC_ALL, "ru_RU.UTF-8");
 
-#ifdef _WIN32
-    SetConsoleCP(CP_UTF8);
-    SetConsoleOutputCP(CP_UTF8);
+// #ifdef _WIN32
+//     SetConsoleCP(CP_UTF8);
+//     SetConsoleOutputCP(CP_UTF8);
 
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE); //Grok AI
-    DWORD dwMode = 0;
-    if (GetConsoleMode(hOut, &dwMode))
-    {
-        dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-        SetConsoleMode(hOut, dwMode);
-    }
-#endif
+//     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE); //Grok AI
+//     DWORD dwMode = 0;
+//     if (GetConsoleMode(hOut, &dwMode))
+//     {
+//         dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+//         SetConsoleMode(hOut, dwMode);
+//     }
+// #endif
 
-    ios::sync_with_stdio(false); //Grok AI made for faster console frame
-    cout.setf(ios::unitbuf); //Grok AI
+//     ios::sync_with_stdio(false); //Grok AI made for faster console frame
+//     cout.setf(ios::unitbuf); //Grok AI
     
-    GameOfLife gameOfLife;
-    gameOfLife.Play();
+//     GameOfLife gameOfLife;
+//     gameOfLife.Play();
     
-    return 0;
-}
+//     return 0;
+// }

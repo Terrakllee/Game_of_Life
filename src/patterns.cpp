@@ -20,7 +20,7 @@
  */
 
 #include <iostream>
-#include "GameOfLife.h"
+#include "engine.h"
 #include "patterns.h"
 
 namespace patterns

@@ -20,7 +20,7 @@
  */
 
 #pragma once
-#include "GameOfLife.h"
+#include "engine.h"
 
 namespace patterns
 {

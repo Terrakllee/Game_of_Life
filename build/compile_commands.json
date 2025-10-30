@@ -1,0 +1,32 @@
+[
+{
+  "directory": "C:/Users/QuantumAge/Documents/Code_Stuff/VSCode/MyProjects/Game_of_Life/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo /TP  -IC:\\Users\\QuantumAge\\Documents\\Code_Stuff\\VSCode\\MyProjects\\Game_of_Life\\include /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 /FoCMakeFiles\\Game_of_Life.dir\\Game_of_Life.cpp.obj /FdCMakeFiles\\Game_of_Life.dir/ /FS -c C:\\Users\\QuantumAge\\Documents\\Code_Stuff\\VSCode\\MyProjects\\Game_of_Life\\Game_of_Life.cpp",
+  "file": "C:/Users/QuantumAge/Documents/Code_Stuff/VSCode/MyProjects/Game_of_Life/Game_of_Life.cpp",
+  "output": "CMakeFiles/Game_of_Life.dir/Game_of_Life.cpp.obj"
+},
+{
+  "directory": "C:/Users/QuantumAge/Documents/Code_Stuff/VSCode/MyProjects/Game_of_Life/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo /TP  -IC:\\Users\\QuantumAge\\Documents\\Code_Stuff\\VSCode\\MyProjects\\Game_of_Life\\include /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 /FoCMakeFiles\\Game_of_Life.dir\\src\\UI.cpp.obj /FdCMakeFiles\\Game_of_Life.dir/ /FS -c C:\\Users\\QuantumAge\\Documents\\Code_Stuff\\VSCode\\MyProjects\\Game_of_Life\\src\\UI.cpp",
+  "file": "C:/Users/QuantumAge/Documents/Code_Stuff/VSCode/MyProjects/Game_of_Life/src/UI.cpp",
+  "output": "CMakeFiles/Game_of_Life.dir/src/UI.cpp.obj"
+},
+{
+  "directory": "C:/Users/QuantumAge/Documents/Code_Stuff/VSCode/MyProjects/Game_of_Life/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo /TP  -IC:\\Users\\QuantumAge\\Documents\\Code_Stuff\\VSCode\\MyProjects\\Game_of_Life\\include /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 /FoCMakeFiles\\Game_of_Life.dir\\src\\engine.cpp.obj /FdCMakeFiles\\Game_of_Life.dir/ /FS -c C:\\Users\\QuantumAge\\Documents\\Code_Stuff\\VSCode\\MyProjects\\Game_of_Life\\src\\engine.cpp",
+  "file": "C:/Users/QuantumAge/Documents/Code_Stuff/VSCode/MyProjects/Game_of_Life/src/engine.cpp",
+  "output": "CMakeFiles/Game_of_Life.dir/src/engine.cpp.obj"
+},
+{
+  "directory": "C:/Users/QuantumAge/Documents/Code_Stuff/VSCode/MyProjects/Game_of_Life/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo /TP  -IC:\\Users\\QuantumAge\\Documents\\Code_Stuff\\VSCode\\MyProjects\\Game_of_Life\\include /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 /FoCMakeFiles\\Game_of_Life.dir\\src\\patterns.cpp.obj /FdCMakeFiles\\Game_of_Life.dir/ /FS -c C:\\Users\\QuantumAge\\Documents\\Code_Stuff\\VSCode\\MyProjects\\Game_of_Life\\src\\patterns.cpp",
+  "file": "C:/Users/QuantumAge/Documents/Code_Stuff/VSCode/MyProjects/Game_of_Life/src/patterns.cpp",
+  "output": "CMakeFiles/Game_of_Life.dir/src/patterns.cpp.obj"
+},
+{
+  "directory": "C:/Users/QuantumAge/Documents/Code_Stuff/VSCode/MyProjects/Game_of_Life/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo /TP  -IC:\\Users\\QuantumAge\\Documents\\Code_Stuff\\VSCode\\MyProjects\\Game_of_Life\\include /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 /FoCMakeFiles\\Game_of_Life.dir\\src\\settings.cpp.obj /FdCMakeFiles\\Game_of_Life.dir/ /FS -c C:\\Users\\QuantumAge\\Documents\\Code_Stuff\\VSCode\\MyProjects\\Game_of_Life\\src\\settings.cpp",
+  "file": "C:/Users/QuantumAge/Documents/Code_Stuff/VSCode/MyProjects/Game_of_Life/src/settings.cpp",
+  "output": "CMakeFiles/Game_of_Life.dir/src/settings.cpp.obj"
+}
+]

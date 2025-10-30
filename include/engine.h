@@ -25,10 +25,59 @@
 class GameOfLife
 {
 public:
-    int GCMX();
-    int GCMY();
-    int GetActualGridSizeRows();
-    int GetActualGridSizeCols();
+    ///// Getters
+    int GCMX()const{return cMX;}
+
+    int GCMY()const{return cMY;}
+
+    int GetActualGridSizeRows()const{return actualGridSizeRows;}
+    int GetActualGridSizeCols()const{return actualGridSizeCols;}
+
+    int GetMAX_ROWS()const{return MAX_ROWS;}
+    int GetMAX_COLS()const{return MAX_COLS;}
+
+    int GetTickTime()const{return tickTime;}
+
+    bool GetGridView()const{return gridView;}
+
+    bool IsGridSizeXEven()const{return actualGridSizeCols % 2 == 0;}
+
+    bool IsGridSizeYEven()const{return actualGridSizeRows % 2 == 1;}
+
+    bool GetFrameHistory()const{return frameHistory;}
+
+    short GetBgCharChoose()const{return bgCharChoose;}
+    char GetBgChar()const{return bgChar;}
+
+    bool GetShowCage()const{return showCage;}
+    bool GetShowCoords()const{return showCoords;}
+
+    bool GetUserChangedSeed()const{return userChangedSeed;}
+
+    ///// Setters
+
+    void SetFrameHistory(bool framHistory){this->frameHistory = frameHistory;}
+
+    void SetActualGridSizeRows(int actualGridSizeRows){this->actualGridSizeRows = actualGridSizeRows;}
+    void SetActualGridSizeCols(int actualGridSizeCols){this->actualGridSizeCols = actualGridSizeCols;}
+
+    void SetRows(int rows){this->rows = rows;}
+    void SetCols(int cols){this->cols = cols;}
+    
+    void SetGridView(bool gridView){this->gridView = gridView;}
+
+    void SetTickTime(int tickTime){this->tickTime = tickTime;}
+
+    void SetBgCharChoose(short bgCharChoose){this->bgCharChoose = bgCharChoose;}
+
+    void SetBgChar(char bgChar){this->bgChar = bgChar;}
+
+    void SetShowCage(bool showCage){this->showCage = showCage;}
+    void SetShowCoords(bool showCoords){this->showCoords = showCoords;}
+
+    void SetUserChangedSeed(bool userChangedSeed){this->userChangedSeed = userChangedSeed;}
+
+
     class Cell
     {
         ///// VARIABLES
@@ -80,9 +129,6 @@ public:
         void SetDownRightCornerAlive(bool DRCA) {downRightCornerAlive = DRCA;}
 
     };
-
-    bool IsGridSizeXEven();
-    bool IsGridSizeYEven();
 
     bool IsEdge(int &i, int &j);
     bool IsCellEdge(int &i, int &j);
@@ -137,8 +183,8 @@ public:
 
     // void CreateBlinker(); //Blinker 3x3
 
-    void ChooseBackground(); // Menu to change BG of grid
-    void SetGameSpeed(); // Sets game speed int milliseconds
+    // void ChooseBackground(); // Menu to change BG of grid
+    // void SetGameSpeed(); // Sets game speed int milliseconds
 
     int CountAliveCellsOnGrid(); // Counts and returns number of alive cells on the entire grid
     int CountDeadCellsOnGrid(); // Counts and returns number of dead cells on the entire grid
@@ -150,16 +196,16 @@ public:
     void AliveRandomCell(); // Makes random cell alive
     void UserKillCell(); // User deletes cell at a specific coordinates
     void UserAddCell(); // User places cell at a specific coordinates
-    void ChangeSeed();
+    // void ChangeSeed();
     void RandomizeManyCellsBySeed(); // Spawns many random cells using specific user entered seed
-    void ChangeCage(); //Changes cage design from coordinates to borders, or opposite
+    // void ChangeCage(); //Changes cage design from coordinates to borders, or opposite
 
     void DebugMenu(); // Debug menu for testing different parts of the game mechanics
     void Launch();
-    void ChangeGridSize();
-    void Info();
-    void Settings();
-    void MainMenu();
+    // void ChangeGridSize();
+    // void Info();
+    // void Settings();
+    // void MainMenu();
     void Greetings(); // Greeting message
     void Play(); // Main function to play a game
     void InitGrid();
