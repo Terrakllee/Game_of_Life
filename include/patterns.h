@@ -24,23 +24,45 @@
 
 namespace patterns
 {
-    ////////////////////////////////////////////////////////// CREATE OSCILLATORS
-    void CreateBlinker(GameOfLife& g); //Blinker 3x3
-    void CreateToad(GameOfLife& g); //Toad 4x4
-    void CreateBeacon(GameOfLife& g); //Beacon 4x4
-    void CreatePulsar(GameOfLife& g); //Pulsar 17x17
-    void CreatePentadecathlon(GameOfLife& g); //Pentadecathlon 11x18
-    ////////////////////////////////////////////////////////////// CREATE SPACESHIPS
-    void CreateGlider(GameOfLife& g); //Glider 5x5
-    //////////////////////////////////////////////////// CREATE METHUSELAHS
-    void CreateTheRPentomino(GameOfLife& g); // The R-pentomino 5x5
-    void CreateDiehard(GameOfLife& g); // Diehard 10x5
-    void CreateAcorn(GameOfLife& g); // Acorn 9x5
-    //////////////////////////////// CREATE NUKES
-    void CreateDiagonalNuke(GameOfLife& g); //Diagonal Nuke 10x8
-    void CreateCompactNuke(GameOfLife& g); //Compact Nuke 5x5
-    void CreateNukeLine(GameOfLife& g); //Nuke Line 41x3
-    /////////////////Custom user made patterns
-    void CreateAmogus(GameOfLife& g); //Amogus 6x7
+    ///////////////////////////////////////////  CREATE OSCILLATORS
+
+    // Creates Blinker 3x3
+    void CreateBlinker(GameOfLife& g);
+    // Creates Toad 4x4
+    void CreateToad(GameOfLife& g);
+    // Creates Beacon 4x4
+    void CreateBeacon(GameOfLife& g);
+    // Creates Pulsar 17x17
+    void CreatePulsar(GameOfLife& g);
+    // Creates Pentadecathlon 11x18
+    void CreatePentadecathlon(GameOfLife& g);
+
+    /////////////////////////////////////////// CREATE SPACESHIPS
+
+    // Creates Glider 5x5
+    void CreateGlider(GameOfLife& g);
+
+    /////////////////////////////////////////// CREATE METHUSELAHS
+
+    // Creates The R-pentomino 5x5
+    void CreateTheRPentomino(GameOfLife& g);
+    // Creates Diehard 10x5
+    void CreateDiehard(GameOfLife& g);
+    // Creates Acorn 9x5
+    void CreateAcorn(GameOfLife& g);
+
+    ///////////////////////////////////////////  CREATE NUKES
+
+    // Creates Diagonal Nuke 10x8
+    void CreateDiagonalNuke(GameOfLife& g);
+    // Creates Compact Nuke 5x5
+    void CreateCompactNuke(GameOfLife& g);
+    // Creates Nuke Line 41x3
+    void CreateNukeLine(GameOfLife& g);
+
+    /////////////////////////////////////////// CUSTOM USER MADE PATTERNS
+
+    // Creates Amogus 6x7
+    void CreateAmogus(GameOfLife& g);
 
 }

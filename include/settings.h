@@ -25,8 +25,11 @@
 namespace settings
 {
     void ChangeGridSize(GameOfLife& g);
+    // Sets game speed in milliseconds
     void SetGameSpeed(GameOfLife& g);
+    // Menu to change background of grid
     void ChooseBackground(GameOfLife& g);
+    // Changes cage design from coordinates to borders, or opposite
     void ChangeCage(GameOfLife& g);
     void ChangeSeed(GameOfLife& g);
 }

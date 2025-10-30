@@ -20,23 +20,25 @@
  */
 
 #include <iostream>
-#include <chrono>
 #include <thread>
 #include <string>
-#include <ctime>
+
+static const std::string VERSION = "1.1";
 
 #ifdef _WIN32
 #include <windows.h>
 #endif
 
 #include "engine.h"
-#include "patterns.h"
-#include "UI.h"
-#include "settings.h"
 
-using namespace std;
+// TO-DO: fix bug when enabling coordinates and bugs when entering char, not number, when number is needed
 
-static const string VERSION = "1.0";
+void Greetings() // Greeting message
+{
+    std::cout << "|====|====|Игра Жизнь|====|====|\n";
+    std::cout << "Разработчик: Terrakllee\n";
+    std::cout << "Версия: " << VERSION << "\n\n";
+}
 
 int main()
 {
@@ -55,9 +57,10 @@ int main()
     }
 #endif
 
-    ios::sync_with_stdio(false); //Grok AI made for faster console frame
-    cout.setf(ios::unitbuf); //Grok AI
+    std::ios::sync_with_stdio(false); //Grok AI made for faster console frame
+    std::cout.setf(std::ios::unitbuf); //Grok AI
     
+    Greetings();
     GameOfLife gameOfLife;
     gameOfLife.Play();
     

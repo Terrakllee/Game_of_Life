@@ -20,25 +20,12 @@
  */
 
 #include <iostream>
-#include <chrono>
-#include <thread>
 #include <string>
-#include <ctime>
-
-#ifdef _WIN32
-#include <windows.h>
-#endif
 
 #include "engine.h"
 #include "patterns.h"
-#include "UI.h"
+#include "ui.h"
 #include "settings.h"
-
-using namespace std;
-
-static const string VERSION = "1.0";
-
-//Getters
 
 bool GameOfLife::IsEdge(int &i, int &j)
 {
@@ -160,23 +147,23 @@ bool GameOfLife::IsDownRightCorner(int &i, int &j)
     }
 }
 
-void GameOfLife::RawPrintGrid() //Prints entire grid as it is (for debugging)
+void GameOfLife::RawPrintGrid()
 {
-    cout << "\n";
+    std::cout << "\n";
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < cols; j++)
         {
             if (Grid[i][j].GetIsAlive() == true)
             {
-                cout << "##";
+                std::cout << "##";
             }
             else if (Grid[i][j].GetIsAlive() == false)
             {
-                cout << "..";
+                std::cout << "..";
             }
         }
-        cout << "\n";
+        std::cout << "\n";
     }
     
 }
@@ -490,7 +477,7 @@ void GameOfLife::PrintCell(int &i, int &j)
     }
 }
 
-void GameOfLife::ClearScreen() //Grok AI
+void GameOfLife::ClearScreen()
 {
     if (!frameHistory)
     {
@@ -498,14 +485,13 @@ void GameOfLife::ClearScreen() //Grok AI
         system("cls");
         #endif
     }
-    cout << "\033[2J\033[1;1H" << flush;
+    std::cout << "\033[2J\033[1;1H" << std::flush;
 }
 
-void GameOfLife::PrintGrid() //Prints grid with custom BG and Coordinates, displays life cells
+void GameOfLife::PrintGrid()
 {
     ClearScreen(); //Grok AI
     frame.clear(); //Grok AI
-    // For coordinates A = 10, B = 20 etc
     char numbericRows = 'A';
     char numbericCols = 'A';
 
@@ -537,16 +523,16 @@ void GameOfLife::PrintGrid() //Prints grid with custom BG and Coordinates, displ
     }
     frame += "\n";
 
-    cout << frame << flush; //Grok AI
+    std::cout << frame << std::flush; //Grok AI
 }
 
-void GameOfLife::CheckNeighbours() //Checks who is neighbouring current cell and how many neighbours
+void GameOfLife::CheckNeighbours()
 {
     for (int i = 1; i < (rows-1); i++)
     {
         for (int j = 1; j < (cols-1); j++)
         {
-            ///// CHECKS IF NEIGHBOURING CELL IS ALIVE 
+            // CHECKS IF NEIGHBOURING CELL IS ALIVE 
             if (Grid[i-1][j-1].GetIsAlive())
             {
                 if (Grid[i][j].GetUpperLeftCornerAlive() != 1)
@@ -684,7 +670,7 @@ void GameOfLife::CheckNeighbours() //Checks who is neighbouring current cell and
 
 void GameOfLife::Pattern::MessageSummonSuccess()
 {
-    cout << "\nОбъект \""<<name<<"\" заспавнился успешно!\n";
+    std::cout << "\nОбъект \""<<name<<"\" заспавнился успешно!\n";
 }
 
 bool GameOfLife::CheckIfPatternFits(Pattern &pattern)
@@ -736,7 +722,7 @@ void GameOfLife::CreatePatternByID(int patternID)
         patterns::CreateAmogus(*this);
         break;
     default:
-        cout << "\nОбъекта с таким ID не существует!\n";
+        std::cout << "\nОбъекта с таким ID не существует!\n";
         break;
     }
 }
@@ -745,34 +731,35 @@ void GameOfLife::SummonPattern(Pattern &pattern)
 {
     if (CheckIfPatternFits(pattern))
     {
-        coordColibrX = pattern.GetSizeX() / 2; //fixes user coordinates cell placement X //Half size of a building to paste (center)
-        coordColibrY = pattern.GetSizeY() / 2; //fixes user coordinates cell placement Y //Half size of a building to paste (center)
+        coordColibrX = pattern.GetSizeX() / 2; //fixes user coordinates cell placement X Half size of a pattern to paste (center)
+        coordColibrY = pattern.GetSizeY() / 2; //fixes user coordinates cell placement Y Half size of a pattern to paste (center)
 
         cMX = ((actualGridSizeCols / 2)-coordColibrX);
         cMY = ((actualGridSizeRows / 2)-coordColibrY); 
 
-        CreatePatternByID(pattern.GetPatternID()); // uncoment!
+        CreatePatternByID(pattern.GetPatternID());
         pattern.MessageSummonSuccess();
         // PrintGrid();  // UNDONE
         // MovePattern();
     }
     else
     {
-        cout << "\nНе удалось заспавнить объект \""<<pattern.GetName()<<"\", недостаточно места (Требуется " << pattern.GetSizeX() << "x" << pattern.GetSizeY() << ", а ваше поле " << GetActualGridSizeCols() << "x" << GetActualGridSizeRows() <<  ")\n";
+        std::cout << "\nНе удалось заспавнить объект \""<<pattern.GetName()<<"\", недостаточно места (Требуется " << pattern.GetSizeX() << "x" << pattern.GetSizeY() << ", а ваше поле " << GetActualGridSizeCols() << "x" << GetActualGridSizeRows() <<  ")\n";
     }
 }
 
-// void MovePattern() // UNDONE
+// UNDONE Coming soon...
+// void MovePattern()
 // {
 //     char userMove;
 //     bool exitMovingPattern;
-//     cout << "\nВведите в какую сторону хотите переместить паттерн\n";
-//     cout << "Если вас устраивает позиция паттерна введите - 'c'\n";
-//     cout << "Чтобы переместить паттерн вверх, введите - 'u'\n";
-//     cout << "Чтобы переместить паттерн вниз, введите - 'd'\n";
-//     cout << "Чтобы переместить паттерн влево, введите - 'l'\n";
-//     cout << "Чтобы переместить паттерн вправо, введите - 'r'\n";
-//     cout << "Ввод: ";
+//     std::cout << "\nВведите в какую сторону хотите переместить паттерн\n";
+//     std::cout << "Если вас устраивает позиция паттерна введите - 'c'\n";
+//     std::cout << "Чтобы переместить паттерн вверх, введите - 'u'\n";
+//     std::cout << "Чтобы переместить паттерн вниз, введите - 'd'\n";
+//     std::cout << "Чтобы переместить паттерн влево, введите - 'l'\n";
+//     std::cout << "Чтобы переместить паттерн вправо, введите - 'r'\n";
+//     std::cout << "Ввод: ";
 //     cin >> userMove;
 
 //     do
@@ -796,7 +783,7 @@ void GameOfLife::SummonPattern(Pattern &pattern)
 //             break;
         
 //         default:
-//             cout << "\nНет такого направления!\n";
+//             std::cout << "\nНет такого направления!\n";
 //             break;
 //         }
 //     } while (!exitMovingPattern);
@@ -806,15 +793,15 @@ void GameOfLife::SummonPattern(Pattern &pattern)
 // void MovePatternLeft() // UNDONE!!!!
 // {
 //     int uM; // user chooses for how much to move
-//     cout << "\nВведите насколько нужно сдвинуть паттерн влево (-x)\n";
+//     std::cout << "\nВведите насколько нужно сдвинуть паттерн влево (-x)\n";
 //     do
 //     {
-//         cout << "Ввод: ";
+//         std::cout << "Ввод: ";
 //         cin >> uM;
 
 //         if (uM > cMX)
 //         {
-//             cout << "\nЭто край поля, нельзя сдвинуть паттерн левее!\n";
+//             std::cout << "\nЭто край поля, нельзя сдвинуть паттерн левее!\n";
 //         }
 //     } while (uM >= cMX);
     
@@ -832,138 +819,9 @@ void GameOfLife::SummonPattern(Pattern &pattern)
 //     }
 // }
 
-void GameOfLife::SummonConstructionMenu() // Menu of summoning different life cell ships like patterns
-{
-    bool exitConstructionMenu = false;
-    char summon;
 
-    do
-    {
-        cout << "\n+---+----+--Строитель конструкций--+----+---+\n";
-        cout << "Размер вашего поля: " << actualGridSizeCols << "x" << actualGridSizeRows << "\n"; 
-        cout << "Введите 'b' для призыва конструкции \"Blinker\" (3x3) \n";
-        cout << "Введите 'g' для призыва конструкции \"Glider\" (5x5)\n";
-        cout << "Введите 'p' для призыва конструкции \"Pulsar\"(17x17)\n";
-        cout << "Введите 'e' для призыва конструкции \"Pentadecathlon\" (11x18)\n";
-        cout << "Введите 'r' для призыва конструкции \"The R-Pentomino\" (5x5)\n";
-        cout << "Введите 't' для призыва конструкции \"Toad\" (4x4)\n";
-        cout << "Введите 'o' для призыва конструкции \"Beacon\" (4x4)\n";
-        cout << "Введите 'd' для призыва конструкции \"Diehard\" (10x5)\n";
-        cout << "Введите 'a' для призыва конструкции \"Acorn\" (9x5)\n";
-        cout << "Введите 'n' для призыва конструкции \"Nuke Line\" (41x3)\n";
-        cout << "Введите 'l' для призыва конструкции \"Diagonal Nuke\" (10x8)\n";
-        cout << "Введите 'c' для призыва конструкции \"Compact Nuke\" (5x5)\n";
-        cout << "Введите 's' для призыва конструкции \"Amogus\" (6x7)\n";
-        cout << "Введите 'q' чтобы вернуться в меню\n";
-        cout << "Ввод: ";
-        cin >> summon;
 
-        switch (summon)
-        {
-        case 'b':
-            {
-                Pattern blinker(3, 3, "Blinker", 1);
-                SummonPattern(blinker);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 't':
-            {
-                Pattern toad(5, 5, "Toad", 2);
-                SummonPattern(toad);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 'o':
-            {
-                Pattern beacon(4, 4, "Beacon", 3);
-                SummonPattern(beacon);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 'p':
-            {
-                Pattern pulsar(17, 17, "Pulsar", 4);
-                SummonPattern(pulsar);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 'e':
-            {
-                Pattern pentadecathlon(11, 18, "Pentadecathlon", 5);
-                SummonPattern(pentadecathlon);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 'g':
-            {
-                Pattern glider(5, 5, "Glider", 6);
-                SummonPattern(glider);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 'r':
-            {
-                Pattern theRPentomino(5, 5, "The R-Pentomino", 7);
-                SummonPattern(theRPentomino);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 'd':
-            {
-                Pattern diehard(10, 5, "Diehard", 8);
-                SummonPattern(diehard);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 'a':
-            {
-                Pattern acorn(9, 5, "Acorn", 9);
-                SummonPattern(acorn);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 'l':
-            {
-                Pattern diagonalNuke(10, 8, "Diagonal Nuke", 10);
-                SummonPattern(diagonalNuke);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 'c':
-            {
-                Pattern compactNuke(5, 5, "Compact Nuke", 11);
-                SummonPattern(compactNuke);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 'n':
-            {
-                Pattern nukeLine(41, 3, "Nuke Line", 12);
-                SummonPattern(nukeLine);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 's':
-            {
-                Pattern amogus(6, 7, "Amogus", 13);
-                SummonPattern(amogus);
-            }
-            exitConstructionMenu = true;
-            break;
-        case 'q':
-            exitConstructionMenu = true;
-            break;
-        
-        
-        default:
-            cout << "\nТакого объекта не существует!\n";
-            break;
-        }
-    } while (!exitConstructionMenu);
-}
-
-int GameOfLife::CountAliveCellsOnGrid() // Counts and returns number of alive cells on the entire grid
+int GameOfLife::CountAliveCellsOnGrid()
 {
     int amountOfCellsAliveOnGrid = 0;
     for (int i = 1; i < (rows-1); i++)
@@ -979,7 +837,7 @@ int GameOfLife::CountAliveCellsOnGrid() // Counts and returns number of alive ce
     return amountOfCellsAliveOnGrid;
 }
 
-int GameOfLife::CountDeadCellsOnGrid() // Counts and returns number of dead cells on the entire grid
+int GameOfLife::CountDeadCellsOnGrid()
 {
     int amountOfCellsDeadOnGrid = 0;
     for (int i = 1; i < (rows-1); i++)
@@ -995,17 +853,18 @@ int GameOfLife::CountDeadCellsOnGrid() // Counts and returns number of dead cell
     return amountOfCellsDeadOnGrid;
 }
 
-int GameOfLife::HowMuchFreeSpaceIsLeft() // Counts how many dead cells are here?
+int GameOfLife::HowMuchFreeSpaceIsLeft()
 {
     return (actualGridSizeRows * actualGridSizeCols) - CountAliveCellsOnGrid();
 }
 
-// void ClearArea(int x, int y) /////////////////////////////////////////////////////////////////////////////
+// Clear specific area? UNDONE Coming soon...
+// void ClearArea(int x, int y) 
 // {
 
 // }
 
-void GameOfLife::ClearGrid() // Clears the grid, basicaly kills all the cells
+void GameOfLife::ClearGrid()
 {
     for (int i = 1; i < (rows-1); i++)
     {
@@ -1020,7 +879,7 @@ void GameOfLife::ClearGrid() // Clears the grid, basicaly kills all the cells
     }
 }
 
-void GameOfLife::CellPhysics() // Logic of the cell
+void GameOfLife::CellPhysics()
 {
     for (int i = 1; i < (rows-1); i++)
     {
@@ -1051,7 +910,7 @@ void GameOfLife::CellPhysics() // Logic of the cell
     }
 }
 
-void GameOfLife::InitCell(int x, int y, bool alive) // Initializes Cell
+void GameOfLife::InitCell(int x, int y, bool alive)
 {
     if (Grid[y][x].GetIsAlive() == true && alive == false)
     {
@@ -1066,7 +925,7 @@ void GameOfLife::InitCell(int x, int y, bool alive) // Initializes Cell
     }
 }
 
-void GameOfLife::AliveRandomCell() // Makes random cell alive
+void GameOfLife::AliveRandomCell()
 {
     short randomX;
     short randomY;
@@ -1082,239 +941,12 @@ void GameOfLife::AliveRandomCell() // Makes random cell alive
     cellsGenerated++;
     population++;
 
-    // cout << "\nCell generated(x=" << randomX << ";y=" << randomY << ")"; //DEBUG
+    // std::cout << "\nCell generated(x=" << randomX << ";y=" << randomY << ")"; //DEBUG
 
 }
 
-void GameOfLife::UserKillCell() // User deletes cell at a specific coordinates
+void GameOfLife::Play()
 {
-    // int user;
-    int x, y;
-    showCoords = 1;
-    showCage = 0;
-    
-    cout << "\nУдаление клетки";
-    cout << "\nВведите позицию клетки: \n";
-
-    cout << "x = ";
-
-    do
-    {
-        cin >> x;
-        if (x < 1)
-        {
-            cout << "Слишком малые координаты x!\n";
-        }
-        else if(x > (rows-1))
-        {
-            cout << "Слишком большие координаты x!\n";
-        }
-        
-    } while (x < 1 || x > (rows-1));
-    
-    cout << "y = ";
-
-    do
-    {
-        cin >> y;
-        if (y < 1)
-        {
-            cout << "Слишком малые координаты y!\n";
-        }
-        else if(y > (cols-1))
-        {
-            cout << "Слишком большие координаты y!\n";
-        }
-    } while (y < 1 || y > (cols-1));
-    cout << "Клетка удалена (x " << x << ";y " << y << ")\n";
-    InitCell(x, y, false);
-}
-
-void GameOfLife::UserAddCell() // User places cell at a specific coordinates
-{
-    // int user;
-    int x, y;
-    showCoords = 1;
-    showCage = 0;
-
-    cout << "\nCоздание клетки";
-    cout << "\nВведите позицию клетки: \n";
-
-    cout << "x = ";
-
-    do
-    {
-        cin >> x;
-        if (x < 1)
-        {
-            cout << "Слишком малые координаты x!\n";
-            cout << "\nx = ";
-        }
-        else if(x > actualGridSizeCols)
-        {
-            cout << "Слишком большие координаты x!\n";
-            cout << "\nx = ";
-        }
-        
-    } while (x < 1 || x > actualGridSizeCols);
-    
-    cout << "y = ";
-
-    do
-    {
-        cin >> y;
-        if (y < 1)
-        {
-            cout << "Слишком малые координаты y!\n";
-            cout << "\ny = ";
-        }
-        else if(y > actualGridSizeRows)
-        {
-            cout << "Слишком большие координаты y!\n";
-            cout << "\ny = ";
-        }
-    } while (y < 1 || y > actualGridSizeRows);
-    cout << "Клетка создана (x " << x << ";y " << y << ")\n";
-    InitCell(x, y, true);
-}
-
-void GameOfLife::RandomizeManyCellsBySeed() // Spawns many random cells using specific user entered seed
-{
-    int amountOfCellsToCreation;
-
-    if (userChangedSeed == false)
-    {
-        srand(time(nullptr));
-    }
-
-    cout << "\n@*@**@**@****@***@~~Генерация случайного паттерна~~@***@****@**@**@*@";
-    cout << "\nВаш сид: " << seed;
-    cout << "\nВведите количество клеток к созданию, сейчас максимум можно сгенерировать: " << HowMuchFreeSpaceIsLeft() << " клеток\n";
-    cout << "Сейчас живо: " << CountAliveCellsOnGrid() << " Клеток\n";
-    cout << "Сейчас мертво: " << CountDeadCellsOnGrid() << " Клеток\n";
-    cout << "В сумме: " << ((rows-2)*(cols-2)) << " Клеток\n";
-    cout << "Ввод: ";
-
-
-    do
-    {
-        cin >> amountOfCellsToCreation;
-        if (amountOfCellsToCreation < 0)
-        {
-            cout << "Невозможно создать негативное число клеток!\n";
-            cout << "Ввод: ";
-        }
-        else if (amountOfCellsToCreation > (actualGridSizeRows*actualGridSizeCols))
-        {
-            cout << "Невозможно создать больше чем " << HowMuchFreeSpaceIsLeft() << " клеток!" << " или " << (actualGridSizeRows*actualGridSizeCols) << "\n";
-            cout << "Ввод: ";
-        }
-    } while (amountOfCellsToCreation < 0 || amountOfCellsToCreation > HowMuchFreeSpaceIsLeft());
-
-    if (amountOfCellsToCreation != 0)
-    {
-        
-        for (int i = 0; i < amountOfCellsToCreation; i++)
-        {
-            AliveRandomCell();
-        }
-    }
-    cout << "\nБыло сгенерированно: " << cellsGenerated << " Клеток\n";
-}
-
-// void GameOfLife::ChangeCage() //Changes cage design from coordinates to borders, or opposite
-// {
-//     short user = 0;
-//     cout << "\n&&&&&& Выбор оконтовки &&&&&&\n";
-//     cout << "Введите 1 если хотите увидеть оконтовку и убрать координаты, и 0 если наоборот\n";
-//     cout << "Ввод: ";
-//     cin >> user;
-
-//     if (user == 1)
-//     {
-//         showCage = 1;
-//         showCoords = 0;
-//     }
-//     else
-//     {
-//         showCage = 0;
-//         showCoords = 1;
-//     }
-// }
-
-void GameOfLife::DebugMenu() // Debug menu for testing different parts of the game mechanics
-{
-    char user;
-    cout << "\n~~$$~$~$$~~Debug Menu~~$$~$~$$~~\n";
-    cout << "Press 'p' for calling method RawPrintGrid()\n";
-    cout << "Press 'i' for Debug Preset\n";
-    cout << "Enter: ";
-    cin >> user;
-    
-    switch (user)
-    {
-    case 'p':
-        RawPrintGrid();
-        break;
-    case 'i':
-        // showCoords = true; //bugged
-        // showCage = false;
-        bgCharChoose = 5;
-        bgChar = ' ';
-        tickTime = 100;
-        PrintGrid();
-        for (int i = 0; i < ((rows*cols) / 3); i++)
-        {
-            AliveRandomCell(); 
-        }
-        PrintGrid();
-        Launch();
-    default:
-        break;
-    }
-}
-
-void GameOfLife::Launch()
-{
-    double generation = 1; // Start of a Generation
-    double stopWhen;
-    showCoords = false;
-    showCage = true;
-
-    cout << "\n-------!-!!Запуск!!-!-------\n";
-    cout << "Введите сколько итераций хотите увидеть \n";
-    cout << "Если вы поставили низкую скорость (более 800), рекомендуется поставить мало итераций (~100-200)\n";
-    cout << "Если вы поставили высокую скорость (менее 150), рекомендуется поставить больше итераций (~600-800)\n";
-    cout << "В ином случае это может быть очень долго, тогда закройте и перезапустите игру\n";
-    cout << "Ввод: ";
-    cin >> stopWhen;
-
-    CheckNeighbours();
-    showCoords = false;
-    do
-    {
-        CellPhysics();
-        this_thread::sleep_for(chrono::milliseconds(tickTime)); //ChatGPT AI
-        PrintGrid();
-        cout << "Популяция: " << population << "\t\tГенерация: " << generation << "\n";
-        generation++;
-        CheckNeighbours();
-    } while (generation != stopWhen+1); // +1 for last generation to appear
-
-    cout << "\nСимуляция завершена!\n";
-    cout << "Вы можете продолжить симуляцию или что то изменить в ней через меню\n";
-}
-
-void GameOfLife::Greetings() // Greeting message
-{
-    cout << "|====|====|Игра Жизнь|====|====|\n";
-    cout << "Разработчик: Terrakllee\n";
-    cout << "Версия: " << VERSION << "\n\n";
-}
-
-void GameOfLife::Play() // Main function to play a game
-{
-    Greetings();
     PrintGrid();
     UI::MainMenu(*this);
 }
@@ -1339,8 +971,6 @@ void GameOfLife::DeleteGrid()
     Grid = nullptr;
 }
 
-//Constructor
-
 GameOfLife::GameOfLife()
 {
     Grid = new Cell *[rows];
@@ -1349,8 +979,6 @@ GameOfLife::GameOfLife()
         Grid[i] = new Cell[cols];
     }
 }
-
-//Destructor
 
 GameOfLife::~GameOfLife()
 {
@@ -1361,29 +989,3 @@ GameOfLife::~GameOfLife()
     delete[] Grid;
     Grid = nullptr;
 }
-
-// int main()
-// {
-//     setlocale(LC_ALL, "ru_RU.UTF-8");
-
-// #ifdef _WIN32
-//     SetConsoleCP(CP_UTF8);
-//     SetConsoleOutputCP(CP_UTF8);
-
-//     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE); //Grok AI
-//     DWORD dwMode = 0;
-//     if (GetConsoleMode(hOut, &dwMode))
-//     {
-//         dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-//         SetConsoleMode(hOut, dwMode);
-//     }
-// #endif
-
-//     ios::sync_with_stdio(false); //Grok AI made for faster console frame
-//     cout.setf(ios::unitbuf); //Grok AI
-    
-//     GameOfLife gameOfLife;
-//     gameOfLife.Play();
-    
-//     return 0;
-// }

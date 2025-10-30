@@ -23,53 +23,52 @@
 #include "engine.h"
 #include "settings.h"
 
-using namespace std;
-
 namespace settings
 {
     void ChangeGridSize(GameOfLife& g)
     {
         int changeSizeX;
         int changeSizeY;
-        bool userValidation;
+        char userValidation;
 
-        cout << "\n--##--##--Редактирование размера поля--##--##--\n";
+        std::cout << "\n--##--##--Редактирование размера поля--##--##--\n";
         
         do
         {
-            cout << "Введите размер по шкале X\n";
-            cout << "Ввод: ";
-            cin >> changeSizeX;
+            std::cout << "Введите размер по шкале X, число! НЕ БУКВУ! Пожалуйста!\n";
+            std::cout << "Ввод: ";
+            std::cin >> changeSizeX;
 
             if (changeSizeX < 1)
             {
-                cout << "\nВы не можете создать поле на отрицательное количество ячеек!\n";
+                std::cout << "\nВы не можете создать поле на отрицательное количество ячеек!\n";
             }
             else if (changeSizeX > g.GetMAX_COLS())
             {
-                cout << "\nВы не можете создать поле на больше чем " << g.GetMAX_COLS() << " ячеек!\n";
+                std::cout << "\nВы не можете создать поле на больше чем " << g.GetMAX_COLS() << " ячеек!\n";
             }
         } while (changeSizeX < 1 || changeSizeX > g.GetMAX_COLS());
 
         do
         {
-            cout << "Введите размер по шкале Y\n";
-            cout << "Ввод: ";
-            cin >> changeSizeY;
+            std::cout << "Введите размер по шкале Y, число! НЕ БУКВУ! Пожалуйста!\n";
+            std::cout << "Ввод: ";
+            std::cin >> changeSizeY;
 
             if (changeSizeY < 1)
             {
-                cout << "\nВы не можете создать поле на отрицательное количество ячеек!\n";
+                std::cout << "\nВы не можете создать поле на отрицательное количество ячеек!\n";
             }
             else if (changeSizeY > g.GetMAX_ROWS())
             {
-                cout << "\nВы не можете создать поле на больше чем " << g.GetMAX_ROWS() << " ячеек!\n";
+                std::cout << "\nВы не можете создать поле на больше чем " << g.GetMAX_ROWS() << " ячеек!\n";
             }
         } while (changeSizeY < 1 || changeSizeY > g.GetMAX_ROWS());
 
-        cout << "\nВы действительно хотите изменить размер с " << g.GetActualGridSizeCols() << "x" << g.GetActualGridSizeRows() << " на " << changeSizeX << "x" << changeSizeY << " ?\n";
-        cout << "Ввод: ";
-        cin >> userValidation;
+        std::cout << "\nВы действительно хотите изменить размер с " << g.GetActualGridSizeCols() << "x" << g.GetActualGridSizeRows() << " на " << changeSizeX << "x" << changeSizeY << " ?\n";
+        std::cout << "Введите 'Y' если да, и 'N' если нет\n";
+        std::cout << "Ввод: ";
+        std::cin >> userValidation;
 
         g.SetActualGridSizeCols(changeSizeX);
         g.SetActualGridSizeRows(changeSizeY);
@@ -77,65 +76,68 @@ namespace settings
         changeSizeX+=2;
         changeSizeY+=2;
         
-
-        if (userValidation == 1)
+        if (userValidation == 'Y' || userValidation == 'y')
         {
             g.DeleteGrid();
-
             g.SetCols(changeSizeX);
             g.SetRows(changeSizeY);
             g.InitGrid();
+            std::cout << "\nУспешно изменен размер поля на " << g.GetActualGridSizeCols() << "x" << g.GetActualGridSizeRows() << " !\n";
+        }
+        else
+        {
+            std::cout << "\nОтменяем изменения...\n";
         }
     }
 
-    void SetGameSpeed(GameOfLife& g) // Sets game speed int milliseconds
+    void SetGameSpeed(GameOfLife& g)
     {
         int tempTickTime;
-        cout << "\nСейчас скорость = ";
+        std::cout << "\nСейчас скорость = ";
         g.GetTickTime();
-        cout << "\nВведите время каждого такта игры (В миллисекундах)\n";
-        cout << "Ввод: ";
+        std::cout << "\nВведите время каждого такта игры (В миллисекундах)\n";
+        std::cout << "Ввод: ";
 
         do
         {
-            cin >> tempTickTime;
+            std::cin >> tempTickTime;
             if (tempTickTime < 1)
             {
-                cout << "\nСлишком короткий интервал между тактами!\n";
-                cout << "Введите больше времени\n";
+                std::cout << "\nСлишком короткий интервал между тактами!\n";
+                std::cout << "Введите больше времени\n";
             }
             
         } while (tempTickTime < 1);
         g.SetTickTime(tempTickTime);
     }
 
-    void ChooseBackground(GameOfLife& g) // Menu to change BG of grid
+    void ChooseBackground(GameOfLife& g)
     {
         short tempBgCharChoose;
-        cout << "\nВыберите символ для использования в роли фона, для этого введите цифру символа\n";
-        cout << " *1 - '.'\t";
-        cout << " *2 - ':'\t";
-        cout << " *3 - '|'\t";
-        cout << " *4 - '_'\t\n";
-        cout << " *5 - ' '\t";
-        cout << " *6 - '░'\t";
-        cout << " *7 - '█'\t";
-        cout << " *8 - '▓'\t\n";
-        cout << " *9 - '▒'\t";
-        cout << " *10 - '䷀'\t";
-        cout << " *11 - '𝌆'\t";
-        cout << " *12 - '⣿'\t\n";
-        cout << " *13 - '⠐'\t";
-        cout << " *14 - '∙'\t";
-        cout << " *15 - '▏'\t";
-        cout << " *16 - '╲'\t\n";
-        cout << " *17 - '╱'\t";
-        cout << " *18 - '─'\t\n\n";
-        cout << " *19 - Сетка \n\n";
-        cout << "Ввод: ";
+        std::cout << "\nВыберите символ для использования в роли фона, для этого введите цифру символа\n";
+        std::cout << " *1 - '.'\t";
+        std::cout << " *2 - ':'\t";
+        std::cout << " *3 - '|'\t";
+        std::cout << " *4 - '_'\t\n";
+        std::cout << " *5 - ' '\t";
+        std::cout << " *6 - '░'\t";
+        std::cout << " *7 - '█'\t";
+        std::cout << " *8 - '▓'\t\n";
+        std::cout << " *9 - '▒'\t";
+        std::cout << " *10 - '䷀'\t";
+        std::cout << " *11 - '𝌆'\t";
+        std::cout << " *12 - '⣿'\t\n";
+        std::cout << " *13 - '⠐'\t";
+        std::cout << " *14 - '∙'\t";
+        std::cout << " *15 - '▏'\t";
+        std::cout << " *16 - '╲'\t\n";
+        std::cout << " *17 - '╱'\t";
+        std::cout << " *18 - '─'\t\n\n";
+        std::cout << " *19 - Сетка \n\n";
+        std::cout << "Ввод: ";
         do
         {
-            cin >> tempBgCharChoose;
+            std::cin >> tempBgCharChoose;
         } while (tempBgCharChoose < 1 || tempBgCharChoose > 20);
 
         g.SetBgCharChoose(tempBgCharChoose);
@@ -162,69 +164,69 @@ namespace settings
             break;
         }
 
-        cout << "\nВыбран символ: '";
+        std::cout << "\nВыбран символ: '";
         if (tempBgCharChoose < 6)
         {
             g.GetBgChar();
-            cout << "'\n";
+            std::cout << "'\n";
         }
 
         switch (tempBgCharChoose)
         {
         case 6:
-            cout << "░'\n";
+            std::cout << "░'\n";
             g.SetGridView(false);
             break;
         case 7:
-            cout << "█'\n";
+            std::cout << "█'\n";
             g.SetGridView(false);
             break;
         case 8:
-            cout << "▓'\n";
+            std::cout << "▓'\n";
             g.SetGridView(false);
             break;
         case 9:
-            cout << "▒'\n";
+            std::cout << "▒'\n";
             g.SetGridView(false);
             break;
         case 10:
-            cout << "䷀'\n";
+            std::cout << "䷀'\n";
             g.SetGridView(false);
             break;
         case 11:
-            cout << "𝌆'\n";
+            std::cout << "𝌆'\n";
             g.SetGridView(false);
             break;
         case 12:
-            cout << "⣿'\n";
+            std::cout << "⣿'\n";
             g.SetGridView(false);
             break;
         case 13:
-            cout << "⠐'\n";
+            std::cout << "⠐'\n";
             g.SetGridView(false);
             break;
         case 14:
-            cout << "∙'\n";
+            std::cout << "∙'\n";
             g.SetGridView(false);
             break;
         case 15:
-            cout << "▏'\n";
+            std::cout << "▏'\n";
             g.SetGridView(false);
             break;
         case 16:
-            cout << "╲'\n";
+            std::cout << "╲'\n";
             g.SetGridView(false);
             break;
         case 17:
-            cout << "╱'\n";
+            std::cout << "╱'\n";
             g.SetGridView(false);
             break;
         case 18:
-            cout << "─'\n";
+            std::cout << "─'\n";
             g.SetGridView(false);
             break;
         case 19:
-            cout << "Сетка'\n";
+            std::cout << "Сетка'\n";
             g.SetGridView(true);
             break;
         
@@ -233,13 +235,13 @@ namespace settings
         }
     }
 
-    void ChangeCage(GameOfLife& g) //Changes cage design from coordinates to borders, or opposite
+    void ChangeCage(GameOfLife& g)
     {
         short user = 0;
-        cout << "\n&&&&&& Выбор оконтовки &&&&&&\n";
-        cout << "Введите 1 если хотите увидеть оконтовку и убрать координаты, и 0 если наоборот\n";
-        cout << "Ввод: ";
-        cin >> user;
+        std::cout << "\n&&&&&& Выбор оконтовки &&&&&&\n";
+        std::cout << "Введите 1 если хотите увидеть оконтовку и убрать координаты, и 0 если наоборот\n";
+        std::cout << "Ввод: ";
+        std::cin >> user;
 
         if (user == 1)
         {
@@ -256,10 +258,10 @@ namespace settings
     void ChangeSeed(GameOfLife& g)
     {
         unsigned int seed;
-        cout << "\nВведите сид, положительное, целое число (Случайное число для генерации одного и того же паттерна, по тому же сиду)\n";
-        cout << "Ввод: ";
-        cin >> seed;
-        cout << "Ваш сид: " << seed;
+        std::cout << "\nВведите сид, положительное, целое число (Случайное число для генерации одного и того же паттерна, по тому же сиду)\n";
+        std::cout << "Ввод: ";
+        std::cin >> seed;
+        std::cout << "Ваш сид: " << seed;
         g.SetUserChangedSeed(true);
         srand(seed);
     }

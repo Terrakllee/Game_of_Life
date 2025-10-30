@@ -22,11 +22,16 @@
 #pragma once
 #include "engine.h"
 
-namespace UI
+namespace main_menu
 {
-    void MainMenu(GameOfLife& g);
-    void Settings(GameOfLife& g);
-    void Info();
-    // Debug menu for testing different parts of the game mechanics
-    void DebugMenu(GameOfLife& g);
+    // User places cell at a specific coordinates
+    void UserAddCell(GameOfLife& g);
+    // User deletes cell at a specific coordinates
+    void UserKillCell(GameOfLife& g);
+    void Launch(GameOfLife& g);
+    // Menu of summoning different life cell ships like patterns
+    void SummonConstructionMenu(GameOfLife& g);
+    // Spawns many random cells using specific user entered seed
+    void RandomizeManyCellsBySeed(GameOfLife& g);
+
 }
