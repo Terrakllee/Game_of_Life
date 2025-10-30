@@ -84,7 +84,7 @@ namespace UI
             case 'i':
                 Info();
                 break;
-            case '/':
+            case '\\':
                 std::cout << "\nZezamade, это ты? :D\n";
                 break;
             case 'q':

@@ -12,6 +12,10 @@ add_executable(Game_of_Life
     ${SRC_FILES}
 )
 
+if (MINGW)
+    target_link_options(Game_of_Life PRIVATE -static -static-libgcc -static-libstdc++)
+endif()
+
 target_include_directories(Game_of_Life PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
