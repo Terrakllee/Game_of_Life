@@ -141,25 +141,25 @@ namespace settings
     {
         short tempBgCharChoose;
         std::cout << "\nВыберите символ для использования в роли фона, для этого введите цифру символа\n";
-        std::cout << " *1 - '.'\t";
-        std::cout << " *2 - ':'\t";
-        std::cout << " *3 - '|'\t";
-        std::cout << " *4 - '_'\t\n";
-        std::cout << " *5 - ' '\t";
-        std::cout << " *6 - '░'\t";
-        std::cout << " *7 - '█'\t";
-        std::cout << " *8 - '▓'\t\n";
-        std::cout << " *9 - '▒'\t";
-        std::cout << " *10 - '䷀'\t";
-        std::cout << " *11 - '𝌆'\t";
-        std::cout << " *12 - '⣿'\t\n";
-        std::cout << " *13 - '⠐'\t";
-        std::cout << " *14 - '∙'\t";
-        std::cout << " *15 - '▏'\t";
-        std::cout << " *16 - '╲'\t\n";
-        std::cout << " *17 - '╱'\t";
-        std::cout << " *18 - '─'\t\n\n";
-        std::cout << " *19 - Сетка \n\n";
+        std::cout << " 1 - '.'\t";
+        std::cout << " 2 - ':'\t";
+        std::cout << " 3 - '|'\t";
+        std::cout << " 4 - '_'\t\n";
+        std::cout << " 5 - ' '\t";
+        std::cout << " 6 - '░'\t";
+        std::cout << " 7 - '█'\t";
+        std::cout << " 8 - '▓'\t\n";
+        std::cout << " 9 - '▒'\t";
+        std::cout << " 10 - '䷀'\t";
+        std::cout << " 11 - '𝌆'\t";
+        std::cout << " 12 - '⣿'\t\n";
+        std::cout << " 13 - '⠐'\t";
+        std::cout << " 14 - '∙'\t";
+        std::cout << " 15 - '▏'\t";
+        std::cout << " 16 - '╲'\t\n";
+        std::cout << " 17 - '╱'\t";
+        std::cout << " 18 - '─'\t\n\n";
+        std::cout << " 19 - Сетка \n\n";
         std::cout << "Ввод: ";
         do
         {
