@@ -32,38 +32,64 @@ namespace settings
         char userValidation;
 
         std::cout << "\n--##--##--Редактирование размера поля--##--##--\n";
-        
-        do
+
+        std::cout << "Введите размер по шкале X\n";
+        std::cout << "Ввод: ";
+
+        while (true)
         {
-            std::cout << "Введите размер по шкале X, число! НЕ БУКВУ! Пожалуйста!\n";
+            if (std::cin >> changeSizeX)
+            {
+                if (changeSizeX < 1)
+                {
+                    std::cout << "\nВы не можете создать поле на отрицательное или нулевое количество ячеек!\n";
+                }
+                else if (changeSizeX > g.GetMAX_COLS())
+                {
+                    std::cout << "\nВы не можете создать поле на больше чем " << g.GetMAX_COLS() << " ячеек!\n";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                std::cout << "Ошибка, введено не число!\n";
+            }
             std::cout << "Ввод: ";
-            std::cin >> changeSizeX;
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+        }
 
-            if (changeSizeX < 1)
-            {
-                std::cout << "\nВы не можете создать поле на отрицательное количество ячеек!\n";
-            }
-            else if (changeSizeX > g.GetMAX_COLS())
-            {
-                std::cout << "\nВы не можете создать поле на больше чем " << g.GetMAX_COLS() << " ячеек!\n";
-            }
-        } while (changeSizeX < 1 || changeSizeX > g.GetMAX_COLS());
+        std::cout << "Введите размер по шкале Y\n";
+        std::cout << "Ввод: ";
 
-        do
+        while (true)
         {
-            std::cout << "Введите размер по шкале Y, число! НЕ БУКВУ! Пожалуйста!\n";
+            if (std::cin >> changeSizeY)
+            {
+                if (changeSizeY < 1)
+                {
+                    std::cout << "\nВы не можете создать поле на отрицательное или нулевое количество ячеек!\n";
+                }
+                else if (changeSizeY > g.GetMAX_ROWS())
+                {
+                    std::cout << "\nВы не можете создать поле на больше чем " << g.GetMAX_ROWS() << " ячеек!\n";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                std::cout << "Ошибка, введено не число!\n";
+            }
             std::cout << "Ввод: ";
-            std::cin >> changeSizeY;
-
-            if (changeSizeY < 1)
-            {
-                std::cout << "\nВы не можете создать поле на отрицательное количество ячеек!\n";
-            }
-            else if (changeSizeY > g.GetMAX_ROWS())
-            {
-                std::cout << "\nВы не можете создать поле на больше чем " << g.GetMAX_ROWS() << " ячеек!\n";
-            }
-        } while (changeSizeY < 1 || changeSizeY > g.GetMAX_ROWS());
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+        }
 
         std::cout << "\nВы действительно хотите изменить размер с " << g.GetActualGridSizeCols() << "x" << g.GetActualGridSizeRows() << " на " << changeSizeX << "x" << changeSizeY << " ?\n";
         std::cout << "Введите 'Y' если да, и 'N' если нет\n";

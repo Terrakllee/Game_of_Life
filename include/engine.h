@@ -246,7 +246,7 @@ private:
     // CONSTANTS
 
     const int MAX_ROWS = 46;
-    const int MAX_COLS = 106;
+    const int MAX_COLS = 104;
 
     // FLAGS
 
