@@ -32,12 +32,12 @@ namespace settings
         char userValidation;
 
         std::cout << "\n--##--##--Редактирование размера поля--##--##--\n";
-
+        std::cout << "Текущий размер поля " << g.GetActualGridSizeCols() << "x" << g.GetActualGridSizeRows() << "\n";
         std::cout << "Введите размер по шкале X\n";
-        std::cout << "Ввод: ";
 
         while (true)
         {
+            std::cout << "Ввод: ";
             if (std::cin >> changeSizeX)
             {
                 if (changeSizeX < 1)
@@ -57,16 +57,15 @@ namespace settings
             {
                 std::cout << "Ошибка, введено не число!\n";
             }
-            std::cout << "Ввод: ";
             std::cin.clear();
             std::cin.ignore(10000, '\n');
         }
 
         std::cout << "Введите размер по шкале Y\n";
-        std::cout << "Ввод: ";
 
         while (true)
         {
+            std::cout << "Ввод: ";
             if (std::cin >> changeSizeY)
             {
                 if (changeSizeY < 1)
@@ -86,7 +85,6 @@ namespace settings
             {
                 std::cout << "Ошибка, введено не число!\n";
             }
-            std::cout << "Ввод: ";
             std::cin.clear();
             std::cin.ignore(10000, '\n');
         }
@@ -122,18 +120,29 @@ namespace settings
         std::cout << "\nСейчас скорость = ";
         g.GetTickTime();
         std::cout << "\nВведите время каждого такта игры (В миллисекундах)\n";
-        std::cout << "Ввод: ";
 
-        do
+        while (true)
         {
-            std::cin >> tempTickTime;
-            if (tempTickTime < 1)
+            std::cout << "Ввод: ";
+            if (std::cin >> tempTickTime)
             {
-                std::cout << "\nСлишком короткий интервал между тактами!\n";
-                std::cout << "Введите больше времени\n";
+                if (tempTickTime < 1)
+                {
+                    std::cout << "\nСлишком короткий интервал между тактами!\n";
+                    std::cout << "Введите больше времени\n";
+                }
+                else
+                {
+                    break;
+                }
             }
-            
-        } while (tempTickTime < 1);
+            else
+            {
+                std::cout << "Ошибка, введено не число!\n";
+            }
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+        }
         g.SetTickTime(tempTickTime);
     }
 
@@ -159,13 +168,42 @@ namespace settings
         std::cout << " 16 - '╲'\t\n";
         std::cout << " 17 - '╱'\t";
         std::cout << " 18 - '─'\t\n\n";
-        std::cout << " 19 - Сетка \n\n";
-        std::cout << "Ввод: ";
-        do
-        {
-            std::cin >> tempBgCharChoose;
-        } while (tempBgCharChoose < 1 || tempBgCharChoose > 20);
+        std::cout << " 19 - Сетка (Размер поля по x, не более 69, для включения)\n\n";
 
+        while (true)
+        {
+            std::cout << "Ввод: ";
+            if (std::cin >> tempBgCharChoose)
+            {
+                if (tempBgCharChoose < 1 || tempBgCharChoose > 20)
+                {
+                    std::cout << "Ошибка, введено слишком малое или слишком большое число!\n";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                std::cout << "Ошибка, введено не число!\n";
+            }
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');      
+        }
+
+        if (tempBgCharChoose == 19)
+        {
+            if (g.GetActualGridSizeCols() > g.GetGRID_VIEW_MAX_X())
+            {
+                std::cout << "Текущий размер поля " << g.GetActualGridSizeCols() << "x" << g.GetActualGridSizeRows() << "\n";
+                std::cout << "Необходим размер поля по координате x, не более " << g.GetGRID_VIEW_MAX_X() << "\n";
+                std::cout << "Это необходимо для корректного отображения сетки\n";
+                std::cout << "Изменить размер поля можно в настройках, попасть в настройки можно через главное меню\n";
+                return;
+            }
+        }
+        
         g.SetBgCharChoose(tempBgCharChoose);
 
         switch (tempBgCharChoose)
@@ -263,21 +301,31 @@ namespace settings
 
     void ChangeCage(GameOfLife& g)
     {
-        short user = 0;
+        char user = '0';
         std::cout << "\n&&&&&& Выбор оконтовки &&&&&&\n";
         std::cout << "Введите 1 если хотите увидеть оконтовку и убрать координаты, и 0 если наоборот\n";
         std::cout << "Ввод: ";
         std::cin >> user;
 
-        if (user == 1)
+        while (true)
         {
-            g.SetShowCage(true);
-            g.SetShowCoords(false);
-        }
-        else
-        {
-            g.SetShowCage(false);
-            g.SetShowCoords(true);
+            if (user == '1')
+            {
+                g.SetShowCage(true);
+                g.SetShowCoords(false);
+                break;
+            }
+            else if (user == '0')
+            {
+                g.SetShowCage(false);
+                g.SetShowCoords(true);
+                break;
+            }
+            else
+            {
+                std::cout << "Нет такого пункта, введите 1 или 0\n";
+                continue;
+            }
         }
     }
 
@@ -285,8 +333,22 @@ namespace settings
     {
         unsigned int seed;
         std::cout << "\nВведите сид, положительное, целое число (Случайное число для генерации одного и того же паттерна, по тому же сиду)\n";
-        std::cout << "Ввод: ";
-        std::cin >> seed;
+
+        while (true)
+        {
+            std::cout << "Ввод: ";
+            if (std::cin >> seed)
+            {
+                break;
+            }
+            else
+            {
+                std::cout << "Ошибка, введено не число!\n";
+            }
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+        }
+        
         std::cout << "Ваш сид: " << seed;
         g.SetUserChangedSeed(true);
         srand(seed);

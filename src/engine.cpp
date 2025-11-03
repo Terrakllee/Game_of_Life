@@ -307,7 +307,7 @@ void GameOfLife::PrintCoords(int &i, int &j, char &numbericRows, char &numbericC
     {
         if (gridView == true)
         {
-            frame += "x-";
+            frame += "x+";
             numbericCols = 'A';
         }
         else
@@ -342,17 +342,13 @@ void GameOfLife::PrintCoords(int &i, int &j, char &numbericRows, char &numbericC
     {   
         if (gridView == true)
         {
-            if ((j % 100) == 0)
+            if ((j % 10) == 0)
             {
-                (frame += numbericCols++) += " ";
-            }
-            else if (j < 10)
-            {
-                ((frame += " ") += (j % 10)) += " ";
+                ((frame += " ") += numbericCols++) += " ";
             }
             else
             {
-                (frame += (j % 100)) += " ";
+                ((frame += " ") += ('0' + (j % 10))) += " ";
             }
         }
         else
@@ -363,7 +359,7 @@ void GameOfLife::PrintCoords(int &i, int &j, char &numbericRows, char &numbericC
             }
             else
             {
-                (frame += (j % 10)) += " ";
+                (frame += ('0' + (j % 10))) += " ";
             }
         }
     }
@@ -371,17 +367,13 @@ void GameOfLife::PrintCoords(int &i, int &j, char &numbericRows, char &numbericC
     {
         if (gridView == true)
         {
-            if ((i % 100) == 0)
+            if ((i % 10) == 0)
             {
-                frame += numbericRows;
-            }
-            else if (i < 10)
-            {
-                (frame += " ") += (i % 10);
+                (frame += " ") += numbericRows;
             }
             else
             {
-                frame += (i % 100);
+                (frame += " ") += ('0' + (i % 10));
             }
         }
         else
@@ -392,7 +384,7 @@ void GameOfLife::PrintCoords(int &i, int &j, char &numbericRows, char &numbericC
             }
             else
             {
-                frame += (i % 10);
+                frame += ('0' + (i % 10));
             }
         }
     }
@@ -400,17 +392,13 @@ void GameOfLife::PrintCoords(int &i, int &j, char &numbericRows, char &numbericC
     {
         if (gridView == true)
         {
-            if ((j % 100) == 0)
+            if ((j % 10) == 0)
             {
-                (frame += numbericCols++) += " ";
-            }
-            else if (j < 10)
-            {
-                ((frame += " ") += (j % 10)) += " ";
+                ((frame += " ") += numbericCols++) += " ";
             }
             else
             {
-                (frame += (j % 100)) += " ";
+                ((frame += " ") += ('0' + (j % 10))) += " ";
             }
         }
         else
@@ -421,7 +409,7 @@ void GameOfLife::PrintCoords(int &i, int &j, char &numbericRows, char &numbericC
             }
             else
             {
-                (frame += (j % 10)) += " ";
+                (frame += ('0' + (j % 10))) += " ";
             }
         }
     }
@@ -429,17 +417,13 @@ void GameOfLife::PrintCoords(int &i, int &j, char &numbericRows, char &numbericC
     {
         if (gridView == true)
         {
-            if ((i % 100) == 0)
+            if ((i % 10) == 0)
             {
-                frame += numbericRows++;
-            }
-            else if (i < 10)
-            {
-                (frame += " ") += (i % 10);
+                (frame += " ") += numbericRows++;
             }
             else
             {
-                (frame += " ") += (i % 100);
+                (frame += " ") += ('0' + (i % 10));
             }
         }
         else
@@ -450,7 +434,7 @@ void GameOfLife::PrintCoords(int &i, int &j, char &numbericRows, char &numbericC
             }
             else
             {
-                frame += (i % 10);
+                frame += ('0' + (i % 10));
             }
         }
     }

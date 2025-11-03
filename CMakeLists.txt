@@ -22,7 +22,7 @@ file(GLOB SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 # --- Исполняемый файл ---
 add_executable(Game_of_Life
-    "${CMAKE_CURRENT_SOURCE_DIR}/Game_of_Life.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp"
     ${SRC_FILES}
 )
 

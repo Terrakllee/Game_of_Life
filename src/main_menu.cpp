@@ -35,42 +35,60 @@ namespace main_menu
         g.SetShowCage(false);
 
         std::cout << "\nCоздание клетки";
-        std::cout << "\nВведите позицию клетки: \n";
+        std::cout << "\nВведите позицию клетки\n";
 
-        std::cout << "x = ";
-
-        do
+        while (true)
         {
-            std::cin >> x;
-            if (x < 1)
+            std::cout << "Ввод x = ";
+            if (std::cin >> x)
             {
-                std::cout << "Слишком малые координаты x!\n";
-                std::cout << "\nx = ";
+                if (x < 1)
+                {
+                    std::cout << "Слишком малые координаты x! Минимум x = 1\n";
+                }
+                else if(x > g.GetActualGridSizeCols())
+                {
+                    std::cout << "Слишком большие координаты x! Максимум x = " << g.GetActualGridSizeCols() <<  "\n";
+                }
+                else
+                {
+                    break;
+                }
             }
-            else if(x > g.GetActualGridSizeCols())
+            else
             {
-                std::cout << "Слишком большие координаты x!\n";
-                std::cout << "\nx = ";
+                std::cout << "Ошибка, введено не число!\n";
             }
-            
-        } while (x < 1 || x > g.GetActualGridSizeCols());
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+        }
         
-        std::cout << "y = ";
-
-        do
+        while (true)
         {
-            std::cin >> y;
-            if (y < 1)
+            std::cout << "Ввод y = ";
+            if (std::cin >> y)
             {
-                std::cout << "Слишком малые координаты y!\n";
-                std::cout << "\ny = ";
+                if (y < 1)
+                {
+                    std::cout << "Слишком малые координаты y! Минимум y = 1\n";
+                }
+                else if(y > g.GetActualGridSizeRows())
+                {
+                    std::cout << "Слишком большие координаты y! Максимум y = " << g.GetActualGridSizeRows() <<  "\n";
+                }
+                else
+                {
+                    break;
+                }
             }
-            else if(y > g.GetActualGridSizeRows())
+            else
             {
-                std::cout << "Слишком большие координаты y!\n";
-                std::cout << "\ny = ";
+                std::cout << "Ошибка, введено не число!\n";
             }
-        } while (y < 1 || y > g.GetActualGridSizeRows());
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+        }
+
         std::cout << "Клетка создана (x " << x << ";y " << y << ")\n";
         g.InitCell(x, y, true);
     }
@@ -82,43 +100,61 @@ namespace main_menu
         g.SetShowCoords(true);
         g.SetShowCage(false);
 
-        std::cout << "\nCоздание клетки";
-        std::cout << "\nВведите позицию клетки: \n";
+        std::cout << "\nУдаление клетки";
+        std::cout << "\nВведите позицию клетки для удаления\n";
 
-        std::cout << "x = ";
-
-        do
+        while (true)
         {
-            std::cin >> x;
-            if (x < 1)
+            std::cout << "Ввод x = ";
+            if (std::cin >> x)
             {
-                std::cout << "Слишком малые координаты x!\n";
-                std::cout << "\nx = ";
+                if (x < 1)
+                {
+                    std::cout << "Слишком малые координаты x! Минимум x = 1\n";
+                }
+                else if(x > g.GetActualGridSizeCols())
+                {
+                    std::cout << "Слишком большие координаты x! Максимум x = " << g.GetActualGridSizeCols() <<  "\n";
+                }
+                else
+                {
+                    break;
+                }
             }
-            else if(x > g.GetActualGridSizeCols())
+            else
             {
-                std::cout << "Слишком большие координаты x!\n";
-                std::cout << "\nx = ";
+                std::cout << "Ошибка, введено не число!\n";
             }
-            
-        } while (x < 1 || x > g.GetActualGridSizeCols());
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+        }
         
-        std::cout << "y = ";
-
-        do
+        while (true)
         {
-            std::cin >> y;
-            if (y < 1)
+            std::cout << "Ввод y = ";
+            if (std::cin >> y)
             {
-                std::cout << "Слишком малые координаты y!\n";
-                std::cout << "\ny = ";
+                if (y < 1)
+                {
+                    std::cout << "Слишком малые координаты y! Минимум y = 1\n";
+                }
+                else if(y > g.GetActualGridSizeRows())
+                {
+                    std::cout << "Слишком большие координаты y! Максимум y = " << g.GetActualGridSizeRows() <<  "\n";
+                }
+                else
+                {
+                    break;
+                }
             }
-            else if(y > g.GetActualGridSizeRows())
+            else
             {
-                std::cout << "Слишком большие координаты y!\n";
-                std::cout << "\ny = ";
+                std::cout << "Ошибка, введено не число!\n";
             }
-        } while (y < 1 || y > g.GetActualGridSizeRows());
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+        }
+
         std::cout << "Клетка удалена (x " << x << ";y " << y << ")\n";
         g.InitCell(x, y, false);
     }
@@ -135,8 +171,28 @@ namespace main_menu
         std::cout << "Если вы поставили низкую скорость (более 800), рекомендуется поставить мало итераций (~100-200)\n";
         std::cout << "Если вы поставили высокую скорость (менее 150), рекомендуется поставить больше итераций (~600-800)\n";
         std::cout << "В ином случае это может быть очень долго, тогда закройте и перезапустите игру\n";
-        std::cout << "Ввод: ";
-        std::cin >> stopWhen;
+
+        while (true)
+        {
+            std::cout << "Ввод: ";
+            if (std::cin >> stopWhen)
+            {
+                if (stopWhen < 1)
+                {
+                    std::cout << "Количество итераций не может быть меньше 1\n";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                std::cout << "Ошибка, введено не число!\n";
+            }
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+        }
 
         g.CheckNeighbours();
         g.SetShowCoords(false);
@@ -277,13 +333,12 @@ namespace main_menu
             case 'q':
                 exitConstructionMenu = true;
                 break;
-            
-            
             default:
                 std::cout << "\nТакого объекта не существует!\n";
                 break;
             }
         } while (!exitConstructionMenu);
+        std::cin.ignore(10000,'\n');
     }
 
     void RandomizeManyCellsBySeed(GameOfLife& g)
@@ -301,27 +356,35 @@ namespace main_menu
         std::cout << "Сейчас живо: " << g.CountAliveCellsOnGrid() << " Клеток\n";
         std::cout << "Сейчас мертво: " << g.CountDeadCellsOnGrid() << " Клеток\n";
         std::cout << "В сумме: " << ((g.GetRows()-2)*(g.GetCols())-2) << " Клеток\n";
-        std::cout << "Ввод: ";
 
-
-        do
+        while (true)
         {
-            std::cin >> amountOfCellsToCreation;
-            if (amountOfCellsToCreation < 0)
+            std::cout << "Ввод: ";
+            if (std::cin >> amountOfCellsToCreation)
             {
-                std::cout << "Невозможно создать негативное число клеток!\n";
-                std::cout << "Ввод: ";
+                if (amountOfCellsToCreation < 0)
+                {
+                    std::cout << "Невозможно создать негативное число клеток!\n";
+                }
+                else if (amountOfCellsToCreation > (g.GetActualGridSizeRows()*g.GetActualGridSizeCols()))
+                {
+                    std::cout << "Невозможно создать больше чем " << g.HowMuchFreeSpaceIsLeft() << " клеток!" << " или " << (g.GetActualGridSizeRows()*g.GetActualGridSizeCols()) << "\n";
+                }
+                else
+                {
+                    break;
+                }
             }
-            else if (amountOfCellsToCreation > (g.GetActualGridSizeRows()*g.GetActualGridSizeCols()))
+            else
             {
-                std::cout << "Невозможно создать больше чем " << g.HowMuchFreeSpaceIsLeft() << " клеток!" << " или " << (g.GetActualGridSizeRows()*g.GetActualGridSizeCols()) << "\n";
-                std::cout << "Ввод: ";
+                std::cout << "Ошибка, введено не число!\n";
             }
-        } while (amountOfCellsToCreation < 0 || amountOfCellsToCreation > g.HowMuchFreeSpaceIsLeft());
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+        }
 
         if (amountOfCellsToCreation != 0)
         {
-            
             for (int i = 0; i < amountOfCellsToCreation; i++)
             {
                 g.AliveRandomCell();

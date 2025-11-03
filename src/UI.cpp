@@ -205,8 +205,8 @@ namespace UI
             g.RawPrintGrid();
             break;
         case 'i':
-            // showCoords = true; //bugged
-            // showCage = false;
+            g.SetShowCoords(true);
+            g.SetShowCage(false);
 
             g.SetBgCharChoose(5);
             g.SetBgChar(' ');

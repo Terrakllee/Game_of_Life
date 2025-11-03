@@ -1,6 +1,6 @@
 # Conway's Game of Life — by Terrakllee  
 Game in Windows CMD interface, Conway's Game of Life  
-Version: 1.1
+Version: 1.2
 
 EN  
 # Sorry no English version yet :(  

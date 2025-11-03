@@ -118,6 +118,7 @@ public:
 
     int GetMAX_ROWS()const{return MAX_ROWS;}
     int GetMAX_COLS()const{return MAX_COLS;}
+    int GetGRID_VIEW_MAX_X()const{return GRID_VIEW_MAX_X;}
 
     int GetTickTime()const{return tickTime;}
 
@@ -229,7 +230,7 @@ private:
     Cell **Grid;
     std::string frame;
     int rows = 36; //default 36, 46 is max
-    int cols = 86; //default 86, 106 is max
+    int cols = 86; //default 86, 104 is max
     int actualGridSizeRows = rows-2;
     int actualGridSizeCols = cols-2;
     int coordColibrX = 0; // Fixes user coordinates cell placement X //Half size of a pattern to paste (center)
@@ -247,6 +248,7 @@ private:
 
     const int MAX_ROWS = 46;
     const int MAX_COLS = 104;
+    const int GRID_VIEW_MAX_X = 69;
 
     // FLAGS
 

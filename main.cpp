@@ -23,7 +23,7 @@
 #include <thread>
 #include <string>
 
-static const std::string VERSION = "1.1";
+static const std::string VERSION = "1.2";
 
 #ifdef _WIN32
 #include <windows.h>
