@@ -21,6 +21,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 #include "engine.h"
 #include "patterns.h"
@@ -803,7 +804,166 @@ void GameOfLife::SummonPattern(Pattern &pattern)
 //     }
 // }
 
+void GameOfLife::SaveGrid()
+{
+    std::cout << "Сохранение поля!\n";
+    std::ofstream fout;
+    std::string userPatternName;
 
+    std::cout << "Введите название сохранения\n";
+    std::cout << "Ввод: ";
+    std::cin >> userPatternName;
+
+    std::string path = "user_patterns/" + userPatternName + ".txt";
+
+    fout.open(path);
+
+    if (!fout.is_open())
+    {
+        std::cout << "Ошибка сохранения, попробуйте снова\n";
+    }
+    else
+    {
+        fout << "x" << actualGridSizeCols << "y" << actualGridSizeRows << "\n";
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                fout << Grid[i][j].GetIsAlive();
+            }
+            fout << "\n";
+        }
+        std::cout << "Поле \"" << userPatternName << "\" успешно сохранено!\n";
+    }
+    fout.close();
+}
+
+void GameOfLife::LoadGrid()
+{
+    std::cout << "Загрузка сохраненного поля!\n";
+    std::ifstream fin;
+    std::string userPatternName;
+
+    std::cout << "Введите название сохранения\n";
+    std::cout << "Ввод: ";
+    std::cin >> userPatternName;
+    std::string path = "user_patterns/" + userPatternName + ".txt";
+
+    fin.open(path);
+
+    if (!fin.is_open())
+    {
+        std::cout << "Ошибка загрузки, попробуйте снова\n";
+    }
+    else
+    {
+        std::cout << "Сохранение найдено! Загрузка сохранения...\n";
+
+        bool xFound = false;
+        bool yFound = false;
+        bool gridSizeFound = false;
+        char ch;
+
+        std::string xFile;
+        std::string yFile;
+
+        std::string saveFile;
+
+        while (fin.get(ch))
+        {
+            saveFile += ch;
+
+
+
+            // if (!xFound && ch == 'x')
+            // {
+            //     xFound = true;
+            // }
+            // else if (!yFound && xFound == true && ch == 'y')
+            // {
+            //     yFound = true;
+            // }
+            // else if (!gridSizeFound && ch == '\n')
+            // {
+            //     gridSizeFound = true;
+            // }
+            
+            // if (xFound && !yFound)
+            // {
+            //     xFile += ch;
+            // }
+            // else if (xFound && yFound && !gridSizeFound)
+            // {
+            //     yFile += ch;
+            // }
+
+            // if (gridSizeFound)
+            // {
+            //     /* code */
+            // }
+            // std::cout << ch;
+        }
+
+        int i = 0;
+        int j = 0;
+        for (char ch : saveFile)
+        {
+            if (!xFound && ch == 'x')
+            {
+                xFound = true;
+                continue;
+            }
+            else if (!yFound && xFound == true && ch == 'y')
+            {
+                yFound = true;
+                continue;
+            }
+            else if (!gridSizeFound && ch == '\n')
+            {
+                gridSizeFound = true;
+
+                if (actualGridSizeCols < stoi(xFile) || actualGridSizeRows < stoi(yFile))
+                {
+                    SetActualGridSizeCols(stoi(xFile));
+                    SetActualGridSizeRows(stoi(yFile));
+
+                    DeleteGrid();
+                    SetCols(stoi(xFile)+2);
+                    SetRows(stoi(yFile)+2);
+                    InitGrid();
+                }
+                continue;
+            }
+            if (xFound && !yFound)
+            {
+                xFile += ch;
+            }
+            else if (xFound && yFound && !gridSizeFound)
+            {
+                yFile += ch;
+            }
+
+            if (gridSizeFound && ch == '\n')
+            {
+                i++;
+                j=0;
+            }
+            else if (gridSizeFound && ch == '0')
+            {
+                Grid[i][j].SetIsAlive(false);
+                j++;
+            }
+            else if (gridSizeFound && ch == '1')
+            {
+                Grid[i][j].SetIsAlive(true);
+                j++;
+            }
+        }
+    }
+    fin.close();
+    std::cout << "Сохранение \"" << userPatternName << "\" успешно загружено!\n";
+}
 
 int GameOfLife::CountAliveCellsOnGrid()
 {

@@ -23,15 +23,13 @@
 #include <thread>
 #include <string>
 
-static const std::string VERSION = "1.2";
+static const std::string VERSION = "1.3";
 
 #ifdef _WIN32
 #include <windows.h>
 #endif
 
 #include "engine.h"
-
-// TO-DO: fix bug when enabling coordinates and bugs when entering char, not number, when number is needed
 
 void Greetings() // Greeting message
 {

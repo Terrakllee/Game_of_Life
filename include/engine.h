@@ -215,6 +215,9 @@ public:
     // Makes random cell alive
     void AliveRandomCell();
 
+    void SaveGrid();
+    void LoadGrid();
+
     // Main function to play a game
     void Play();
     void InitGrid();

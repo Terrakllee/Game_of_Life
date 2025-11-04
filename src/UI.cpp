@@ -41,6 +41,8 @@ namespace UI
             std::cout << "Введите 'v' для отображения поля\n";
             std::cout << "Введите 'k' для удаления клетки\n";
             std::cout << "Введите 'd' для очистки поля\n";
+            std::cout << "Введите 'e' для сохранения поля в файл\n";
+            std::cout << "Введите 'l' для загрузки поля из файла\n";
             std::cout << "Введите 's' для настроек\n";
             std::cout << "Введите 'i' для большей информации по игре\n";
             std::cout << "Введите 'q' для выхода\n";
@@ -74,6 +76,12 @@ namespace UI
             case 'd':
                 g.ClearGrid();
                 g.PrintGrid();
+                break;
+            case 'e':
+                g.SaveGrid();
+                break;
+            case 'l':
+                g.LoadGrid();
                 break;
             case '~':
                 DebugMenu(g);
