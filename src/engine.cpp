@@ -933,6 +933,13 @@ void GameOfLife::LoadGrid()
                     SetRows(stoi(yFile)+2);
                     InitGrid();
                 }
+
+                coordColibrX = stoi(xFile) / 2; //fixes user coordinates cell placement X Half size of a pattern to load (center)
+                coordColibrY = stoi(yFile) / 2; //fixes user coordinates cell placement Y Half size of a pattern to load (center)
+
+                cMX = ((actualGridSizeCols / 2)-coordColibrX);
+                cMY = ((actualGridSizeRows / 2)-coordColibrY); 
+
                 continue;
             }
             if (xFound && !yFound)
@@ -951,12 +958,20 @@ void GameOfLife::LoadGrid()
             }
             else if (gridSizeFound && ch == '0')
             {
-                Grid[i][j].SetIsAlive(false);
+                if (Grid[i+GCMY()][j+GCMX()].GetIsAlive())
+                {
+                    Grid[i+GCMY()][j+GCMX()].SetIsAlive(false);
+                    population--;
+                }
                 j++;
             }
             else if (gridSizeFound && ch == '1')
             {
-                Grid[i][j].SetIsAlive(true);
+                if (!Grid[i+GCMY()][j+GCMX()].GetIsAlive())
+                {
+                    Grid[i+GCMY()][j+GCMX()].SetIsAlive(true);
+                    population++;
+                }
                 j++;
             }
         }
